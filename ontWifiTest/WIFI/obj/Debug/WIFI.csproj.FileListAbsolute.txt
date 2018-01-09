@@ -1,0 +1,30 @@
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\WIFI\bin\Debug\WIFI.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\WIFI\bin\Debug\WIFI.pdb
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.csprojResolveAssemblyReference.cache
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.csproj.CoreCompileInputs.cache
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.pdb
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\WIFI\bin\Debug\WIFI.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\WIFI\bin\Debug\WIFI.pdb
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.csprojResolveAssemblyReference.cache
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.csproj.CoreCompileInputs.cache
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.pdb
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\WIFI\bin\Debug\WIFI.dll
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\WIFI\bin\Debug\WIFI.pdb
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.csprojResolveAssemblyReference.cache
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.csproj.CoreCompileInputs.cache
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.dll
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\WIFI\bin\Debug\WIFI.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\WIFI\bin\Debug\WIFI.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.csprojResolveAssemblyReference.cache
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.csproj.CoreCompileInputs.cache
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\WIFI\obj\Debug\WIFI.pdb
+D:\Download\LoadSaveFile\WIFI\bin\Debug\WIFI.dll
+D:\Download\LoadSaveFile\WIFI\bin\Debug\WIFI.pdb
+D:\Download\LoadSaveFile\WIFI\obj\Debug\WIFI.csprojResolveAssemblyReference.cache
+D:\Download\LoadSaveFile\WIFI\obj\Debug\WIFI.csproj.CoreCompileInputs.cache
+D:\Download\LoadSaveFile\WIFI\obj\Debug\WIFI.dll
+D:\Download\LoadSaveFile\WIFI\obj\Debug\WIFI.pdb

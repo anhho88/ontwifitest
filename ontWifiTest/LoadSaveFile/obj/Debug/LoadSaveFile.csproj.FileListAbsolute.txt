@@ -1,0 +1,63 @@
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\LoadSaveFile.exe.config
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\LoadSaveFile.exe
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\LoadSaveFile.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.Form1.resources
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.Properties.Resources.resources
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.csproj.GenerateResource.Cache
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.csproj.CoreCompileInputs.cache
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.exe
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.Tuychinh.resources
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.csprojResolveAssemblyReference.cache
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\DUT.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\TESTER.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\WIFI.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\DUT.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\TESTER.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\WIFI.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\NationalInstruments.Common.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\LoadSaveFile\LoadSaveFile\bin\Debug\NationalInstruments.VisaNS.dll
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\LoadSaveFile.exe.config
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\LoadSaveFile.exe
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\LoadSaveFile.pdb
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\DUT.dll
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\NationalInstruments.Common.dll
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\TESTER.dll
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\WIFI.dll
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\NationalInstruments.MStudioCLM.dll
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\DUT.pdb
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\TESTER.pdb
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\WIFI.pdb
+D:\Download\LoadSaveFile\LoadSaveFile\bin\Debug\NationalInstruments.Common.xml
+D:\Download\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.csprojResolveAssemblyReference.cache
+D:\Download\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.exe.config
+D:\Download\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.Form1.resources
+D:\Download\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.Properties.Resources.resources
+D:\Download\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.Tuychinh.resources
+D:\Download\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.csproj.GenerateResource.Cache
+D:\Download\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.csproj.CoreCompileInputs.cache
+D:\Download\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.exe
+D:\Download\LoadSaveFile\LoadSaveFile\obj\Debug\LoadSaveFile.pdb
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\LoadSaveFile.exe.config
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\LoadSaveFile.exe
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\LoadSaveFile.pdb
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\DUT.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\NationalInstruments.Common.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\TESTER.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\WIFI.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\NationalInstruments.MStudioCLM.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\DUT.pdb
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\TESTER.pdb
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\WIFI.pdb
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\bin\Debug\NationalInstruments.Common.xml
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.csprojResolveAssemblyReference.cache
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.exe.config
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.Form1.resources
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.Properties.Resources.resources
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.csproj.GenerateResource.Cache
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.csproj.CoreCompileInputs.cache
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.exe
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.pdb
+C:\Users\ANHHO\source\repos\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.txConfig.resources

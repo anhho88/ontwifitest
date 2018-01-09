@@ -1,0 +1,30 @@
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\DUT\bin\Debug\DUT.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\DUT\bin\Debug\DUT.pdb
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.csproj.CoreCompileInputs.cache
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.pdb
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.csprojResolveAssemblyReference.cache
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\DUT\bin\Debug\DUT.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\DUT\bin\Debug\DUT.pdb
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.csprojResolveAssemblyReference.cache
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.csproj.CoreCompileInputs.cache
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.pdb
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\DUT\bin\Debug\DUT.dll
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\DUT\bin\Debug\DUT.pdb
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.csprojResolveAssemblyReference.cache
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.csproj.CoreCompileInputs.cache
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.dll
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\DUT\bin\Debug\DUT.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\DUT\bin\Debug\DUT.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.csprojResolveAssemblyReference.cache
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\DUT\obj\Debug\DUT.csproj.CoreCompileInputs.cache
+D:\Download\LoadSaveFile\DUT\bin\Debug\DUT.dll
+D:\Download\LoadSaveFile\DUT\bin\Debug\DUT.pdb
+D:\Download\LoadSaveFile\DUT\obj\Debug\DUT.csprojResolveAssemblyReference.cache
+D:\Download\LoadSaveFile\DUT\obj\Debug\DUT.csproj.CoreCompileInputs.cache
+D:\Download\LoadSaveFile\DUT\obj\Debug\DUT.dll
+D:\Download\LoadSaveFile\DUT\obj\Debug\DUT.pdb

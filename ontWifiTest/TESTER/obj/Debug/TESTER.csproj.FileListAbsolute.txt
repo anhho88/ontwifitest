@@ -1,0 +1,100 @@
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\TESTER.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\TESTER.pdb
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.csprojResolveAssemblyReference.cache
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.csproj.CoreCompileInputs.cache
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.pdb
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.Common.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.NI4882.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.VisaNS.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.MStudioCLM.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.Common.xml
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.NI4882.xml
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.VisaNS.xml
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.csproj.ResolveComReference.cache
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\DUT.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\WIFI.dll
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\DUT.pdb
+D:\DEV-VNPT\Codes\WIFI_TestingtoolVer1\TESTER\bin\Debug\WIFI.pdb
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.csprojResolveAssemblyReference.cache
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.pdb
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\TESTER.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\TESTER.pdb
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\DUT.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.Common.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.VisaNS.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\WIFI.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.MStudioCLM.dll
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\DUT.pdb
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\WIFI.pdb
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.Common.xml
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.NI4882.xml
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.VisaNS.xml
+D:\VNPT\DEV-VNPT\Codes\Winform\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.csproj.CoreCompileInputs.cache
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\TESTER.dll
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\TESTER.pdb
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\DUT.dll
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\WIFI.dll
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.MStudioCLM.dll
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\DUT.pdb
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\WIFI.pdb
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.Common.xml
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.NI4882.xml
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.VisaNS.xml
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.csprojResolveAssemblyReference.cache
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.csproj.CoreCompileInputs.cache
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.dll
+F:\VNPT\BackupData\VNPT\DEV-VNPT\Codes\Winform\Old\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\TESTER.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\TESTER.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\DUT.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\WIFI.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.MStudioCLM.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\DUT.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\WIFI.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.Common.xml
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.NI4882.xml
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\bin\Debug\NationalInstruments.VisaNS.xml
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.csprojResolveAssemblyReference.cache
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.dll
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.pdb
+E:\Desktop1\Team HTSX\Anh Đoàn\Test Máy Đo\WIFI_TestingtoolVer1\TESTER\obj\Debug\TESTER.csproj.CoreCompileInputs.cache
+D:\Download\LoadSaveFile\TESTER\bin\Debug\TESTER.dll
+D:\Download\LoadSaveFile\TESTER\bin\Debug\TESTER.pdb
+D:\Download\LoadSaveFile\TESTER\bin\Debug\DUT.dll
+D:\Download\LoadSaveFile\TESTER\bin\Debug\NationalInstruments.Common.dll
+D:\Download\LoadSaveFile\TESTER\bin\Debug\NationalInstruments.NI4882.dll
+D:\Download\LoadSaveFile\TESTER\bin\Debug\WIFI.dll
+D:\Download\LoadSaveFile\TESTER\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+D:\Download\LoadSaveFile\TESTER\bin\Debug\NationalInstruments.MStudioCLM.dll
+D:\Download\LoadSaveFile\TESTER\bin\Debug\DUT.pdb
+D:\Download\LoadSaveFile\TESTER\bin\Debug\WIFI.pdb
+D:\Download\LoadSaveFile\TESTER\bin\Debug\NationalInstruments.Common.xml
+D:\Download\LoadSaveFile\TESTER\bin\Debug\NationalInstruments.NI4882.xml
+D:\Download\LoadSaveFile\TESTER\bin\Debug\NationalInstruments.VisaNS.xml
+D:\Download\LoadSaveFile\TESTER\obj\Debug\TESTER.csprojResolveAssemblyReference.cache
+D:\Download\LoadSaveFile\TESTER\obj\Debug\TESTER.csproj.CoreCompileInputs.cache
+D:\Download\LoadSaveFile\TESTER\obj\Debug\TESTER.dll
+D:\Download\LoadSaveFile\TESTER\obj\Debug\TESTER.pdb
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\TESTER.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\TESTER.pdb
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\DUT.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\NationalInstruments.Common.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\NationalInstruments.NI4882.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\WIFI.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\NationalInstruments.MStudioCLM.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\DUT.pdb
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\WIFI.pdb
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\NationalInstruments.Common.xml
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\NationalInstruments.NI4882.xml
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\bin\Debug\NationalInstruments.VisaNS.xml
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\obj\Debug\TESTER.csprojResolveAssemblyReference.cache
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\obj\Debug\TESTER.csproj.CoreCompileInputs.cache
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\obj\Debug\TESTER.dll
+C:\Users\ANHHO\source\repos\ontWifiTest\TESTER\obj\Debug\TESTER.pdb
