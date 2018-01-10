@@ -869,9 +869,9 @@
             this.lblTimeElapsed.ForeColor = System.Drawing.Color.White;
             this.lblTimeElapsed.Location = new System.Drawing.Point(123, 42);
             this.lblTimeElapsed.Name = "lblTimeElapsed";
-            this.lblTimeElapsed.Size = new System.Drawing.Size(98, 25);
+            this.lblTimeElapsed.Size = new System.Drawing.Size(140, 25);
             this.lblTimeElapsed.TabIndex = 1;
-            this.lblTimeElapsed.Text = "00:00:00";
+            this.lblTimeElapsed.Text = "00:00:00.000";
             // 
             // label20
             // 

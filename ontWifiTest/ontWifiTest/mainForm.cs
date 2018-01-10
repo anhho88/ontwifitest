@@ -62,7 +62,7 @@ namespace ontWifiTest {
         bool initialControlContext {
             set {
                 lblProgress.Text = "0 / 0";
-                lblTimeElapsed.Text = "00:00:00";
+                lblTimeElapsed.Text = "00:00:00.000";
                 lblStatus.Text = "Ready!";
                 lblProjectName.Text = ProductName.ToString();
                 lblProjectVer.Text = string.Format("Verion: {0}", ProductVersion);
@@ -145,7 +145,7 @@ namespace ontWifiTest {
             if (op.ShowDialog() == DialogResult.OK) {
                 string tmpStr = op.FileName;
                 if ((!tmpStr.ToUpper().Contains("RX_")) && (!tmpStr.ToUpper().Contains("TX_"))) {
-                    MessageBox.Show("File test case không hợp lệ.\nTên file phải bắt đầu bằng kí tự 'TX_' hoặc 'RX_'.\n----------------------------------------------\nVui lòng kiểm tra lại.","ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("File test case không hợp lệ.\nTên file phải bắt đầu bằng kí tự 'TX_' hoặc 'RX_'.\n----------------------------------------------\nVui lòng kiểm tra lại.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblType.Text = "--";
                     lbltestcasefilePath.Text = "--";
                     return;
@@ -156,23 +156,24 @@ namespace ontWifiTest {
             }
         }
 
-        
+
         private void btnExportExcel_Click(object sender, EventArgs e) {
-            FolderBrowserDialog folder = new FolderBrowserDialog();
-            if (folder.ShowDialog()== DialogResult.OK) {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "*.csv|*.csv";
+            if (saveFile.ShowDialog() == DialogResult.OK) {
                 if (txGridDataContext.Count > 0) {
                     System.Text.StringBuilder sb = new System.Text.StringBuilder();
                     sb.AppendLine("WifiStandard,Anten,Bandwidth,Channel,Frequency,Rate,Power_Lower_Limit,Power_Actual,Power_Upper_Limit,FreqErr_Lower_Limit,FreqErr_Actual,FreqErr_Upper_Limit,SymClock_Actual,SymClock_Upper_Limit,EVM_Actual,EVM_Upper_Limit");
                     foreach (var item in txGridDataContext) {
                         sb.AppendLine(item.ToString());
                     }
-                    System.IO.File.WriteAllText(string.Format("{0}\\log.csv", folder.SelectedPath), sb.ToString());
-                    MessageBox.Show("Lưu file OK.","Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Process.Start(string.Format("{0}\\log.csv", folder.SelectedPath));
+                    System.IO.File.WriteAllText(string.Format("{0}", saveFile.FileName), sb.ToString());
+                    MessageBox.Show("Lưu file OK.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Process.Start(string.Format("{0}", saveFile.FileName));
                 }
                 else MessageBox.Show("Không có dữ liệu để lưu.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         #endregion
@@ -241,7 +242,7 @@ namespace ontWifiTest {
                 if (ret) goto OK;
                 else { errCode = 0; errContents.Add(msg); goto NG; }
             }
-            catch(Exception ex) { errCode = 1; errContents.Add(ex.ToString()); goto NG; }
+            catch (Exception ex) { errCode = 1; errContents.Add(ex.ToString()); goto NG; }
             OK:
             debugWriteLine("# Thành công!");
             return true;
@@ -333,9 +334,10 @@ namespace ontWifiTest {
                     }
                     if (!ret) { errCode = 0; goto NG; }
                     else goto OK;
-                } else { errCode = 1; goto NG; }
+                }
+                else { errCode = 1; goto NG; }
             }
-            catch(Exception ex) { errCode = 2; errContents.Add(ex.ToString()); goto NG;}
+            catch (Exception ex) { errCode = 2; errContents.Add(ex.ToString()); goto NG; }
             OK:
             debugWriteLine("# Thành công!");
             return true;
@@ -390,7 +392,8 @@ namespace ontWifiTest {
                     default: return false;
                 }
                 return true;
-            } catch {
+            }
+            catch {
                 return false;
             }
         }
@@ -412,7 +415,8 @@ namespace ontWifiTest {
                 }
                 else { errCode = 1; goto NG; }
                 goto OK;
-            } catch (Exception ex) { errCode = 2; errContents.Add(ex.ToString()); goto NG; }
+            }
+            catch (Exception ex) { errCode = 2; errContents.Add(ex.ToString()); goto NG; }
             OK:
             debugWriteLine("# Thành công!");
             return true;
@@ -437,18 +441,20 @@ namespace ontWifiTest {
                     default: return false;
                 }
                 //Channel
-                if (dataIn.wifi== "802.11nHT40") {
+                if (dataIn.wifi == "802.11nHT40") {
                     switch (dataIn.channel) {
                         case "5": { dataOut.channel = "2422"; break; }
                         case "8": { dataOut.channel = "2437"; break; }
                         case "13": { dataOut.channel = "2462"; break; }
                         default: break;
                     }
-                } else {
+                }
+                else {
                     dataOut.channel = ((int.Parse(dataIn.channel) * 5) + 2407).ToString();
                 }
                 return true;
-            } catch {
+            }
+            catch {
                 return false;
             }
         }
@@ -464,7 +470,8 @@ namespace ontWifiTest {
                 if (!convertSettingDUTtoInstrument(data, ref df)) { errCode = 0; goto NG; }
                 Instrument.config_HT20_RxTest_Transmitter(df.channel, df.wifi, "25", "RFB");
                 goto OK;
-            } catch (Exception ex) { errCode = 1; errContents.Add(ex.ToString()); goto NG; }
+            }
+            catch (Exception ex) { errCode = 1; errContents.Add(ex.ToString()); goto NG; }
             OK:
             debugWriteLine("# Thành công!");
             return true;
@@ -483,10 +490,10 @@ namespace ontWifiTest {
             double n = double.Parse(buffer[0]);
             double p = Math.Pow(10, double.Parse(buffer[1]));
             double result = n * p;
-            return Math.Round(result/div, 2).ToString();
+            return Math.Round(result / div, 2).ToString();
         }
 
-        bool getResult(dataFields dataIn,ref dataMeasures dataOut) {
+        bool getResult(dataFields dataIn, ref dataMeasures dataOut) {
             try {
                 string result = Instrument.HienThi();
                 string[] buffer = result.Split(',');
@@ -495,7 +502,8 @@ namespace ontWifiTest {
                 dataOut.sym = convertNR3ToDecimal(buffer[11], 1);
                 dataOut.evm = convertNR3ToDecimal(buffer[1], 1);
                 return true;
-            } catch {
+            }
+            catch {
                 return false;
             }
         }
@@ -503,7 +511,7 @@ namespace ontWifiTest {
         #endregion
 
         #region SubFunction
-        
+
         void delay(int miliseconds, int step) {
             int count = (int)(miliseconds / step);
             for (int i = 0; i < count; i++) {
@@ -516,16 +524,24 @@ namespace ontWifiTest {
             else return time.ToString();
         }
 
+        string convertms(int time) {
+            if (time < 10) return string.Format("00{0}", time);
+            else if (time >=10 && time <100) return string.Format("0{0}", time);
+            else return time.ToString();
+        }
+
         void startCalculateElapsedTime() {
             _flag = false;
             stTimeCount = new Stopwatch();
             stTimeCount.Start();
             MethodInvoker invoker_Ok = delegate {
-                int seconds =(int)stTimeCount.ElapsedMilliseconds / 1000;
+                int miliseconds = (int)stTimeCount.ElapsedMilliseconds;
+                int seconds = miliseconds / 1000;
                 int h = seconds / 3600;
-                int m = (seconds -  (h * 3600)) / 60;
+                int m = (seconds - (h * 3600)) / 60;
                 int s = seconds - (h * 3600) - (m * 60);
-                lblTimeElapsed.Text = string.Format("{0}:{1}:{2}", convertTime(h), convertTime(m), convertTime(s));
+                int ms = miliseconds - (h * 3600 + m * 60 + seconds) * 1000;
+                lblTimeElapsed.Text = string.Format("{0}:{1}:{2}.{3}", convertTime(h), convertTime(m), convertTime(s), convertms(ms));
                 lblTimeElapsed.Refresh();
             };
             threadTimeCount = new Thread(new ThreadStart(() => {
@@ -543,7 +559,8 @@ namespace ontWifiTest {
                 _flag = true;
                 threadTimeCount.Join(1);
                 threadTimeCount.Abort();
-            } catch { }
+            }
+            catch { }
         }
 
         void startProgress(int total) {
@@ -616,49 +633,54 @@ namespace ontWifiTest {
         #endregion
 
         private void btnStart_Click(object sender, EventArgs e) {
-            //Khoi tao controls
-            InitControls();
-            //Ket noi toi ONT
-            if (!connectONT()) goto END;
-            //Ket noi toi Instrument
-            if (!connectInstrument()) goto END;
-            //Load settings vao List....
-            if (!load_AllTXTestCase()) goto END;
-            //Select tab
-            selectTabPage(lblType.Text);
-            //start show progress
-            int totaltestCount = txListTestCase.Count;
-            testCount = 0;
-            startProgress(totaltestCount);
-            //Start LOOP
-            foreach (var data in txListTestCase) {
-                //Update progress
-                testCount++;
-                updateProgress(testCount, totaltestCount);
-                //Send ONT command
-                if (!sendCommandToDUT(data)) goto END;
-                //Wait ....
-                delay(200, 20);
-                //Send Instrument command
-                if (!sendCommandToInstrument(data)) goto END;
-                //Wait DUT tx stable
-                delay(1000, 100);
-                //Get result
-                dataMeasures dm = new dataMeasures();
-                int count = 0;
-                REPEAT:
-                {
-                    count++;
-                    if (!getResult(data, ref dm)) {
-                        if (count <= 3) goto REPEAT;
+            Thread t = new Thread(new ThreadStart(() => {
+                this.Invoke(new MethodInvoker(delegate () {
+                    //Khoi tao controls
+                    InitControls();
+                    //Ket noi toi ONT
+                    if (!connectONT()) goto END;
+                    //Ket noi toi Instrument
+                    if (!connectInstrument()) goto END;
+                    //Load settings vao List....
+                    if (!load_AllTXTestCase()) goto END;
+                    //Select tab
+                    selectTabPage(lblType.Text);
+                    //start show progress
+                    int totaltestCount = txListTestCase.Count;
+                    testCount = 0;
+                    startProgress(totaltestCount);
+                    //Start LOOP
+                    foreach (var data in txListTestCase) {
+                        //Update progress
+                        testCount++;
+                        updateProgress(testCount, totaltestCount);
+                        //Send ONT command
+                        if (!sendCommandToDUT(data)) goto END;
+                        //Wait ....
+                        delay(200, 20);
+                        //Send Instrument command
+                        if (!sendCommandToInstrument(data)) goto END;
+                        //Wait DUT tx stable
+                        delay(1000, 100);
+                        //Get result
+                        dataMeasures dm = new dataMeasures();
+                        int count = 0;
+                        REPEAT:
+                        {
+                            count++;
+                            if (!getResult(data, ref dm)) {
+                                if (count <= 3) goto REPEAT;
+                            }
+                        }
+                        //Hien thi ket qua do len Grid
+                        displayResultToGrid(data, dm);
+                        debugWriteLine(string.Format("> Result: {0}\n", dm.ToString()));
                     }
-                }
-                //Hien thi ket qua do len Grid
-                displayResultToGrid(data, dm);
-                debugWriteLine(string.Format("> Result: {0}\n", dm.ToString()));
-            }
-
-            END: FinishControls();
+                    END: FinishControls();
+                }));
+            }));
+            t.IsBackground = true;
+            t.Start();
         }
 
         #endregion
@@ -727,7 +749,8 @@ namespace ontWifiTest {
             set {
                 try {
                     _pwr = double.Parse(value);
-                } catch { _pwr = 0; }
+                }
+                catch { _pwr = 0; }
             }
         }
         public string PU_Limit { get; set; }
@@ -738,8 +761,9 @@ namespace ontWifiTest {
             set {
                 try {
                     _freqerr = double.Parse(value);
-                } catch { _freqerr = 0; }
-               
+                }
+                catch { _freqerr = 0; }
+
             }
         }
         public string FEU_Limit { get; set; }
@@ -750,7 +774,8 @@ namespace ontWifiTest {
             set {
                 try {
                     _symclock = double.Parse(value);
-                } catch { _symclock = 0; }
+                }
+                catch { _symclock = 0; }
             }
         }
         public string SCU_Limit { get; set; }
@@ -760,8 +785,9 @@ namespace ontWifiTest {
             set {
                 try {
                     _evm = double.Parse(value);
-                } catch { _evm = 0; }
-                
+                }
+                catch { _evm = 0; }
+
             }
         }
         public string EVMU_Limit { get; set; }
