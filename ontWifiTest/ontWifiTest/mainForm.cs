@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using LoadSaveFile;
 using DUT;
 using TESTER;
 using WIFI;
 using System.IO;
+using System.Diagnostics;
 
 namespace ontWifiTest {
 
@@ -29,6 +24,10 @@ namespace ontWifiTest {
 
         List<dataFields> txListTestCase = new List<dataFields>();
         string[] dataLines;
+        Stopwatch stTimeCount = null;
+        Thread threadTimeCount = null;
+        bool _flag = false;
+        int testCount = 0;
 
         List<txGridDataRow> txGridDataContext = new List<txGridDataRow>();
         List<rxGridDataRow> rxGridDataContext = new List<rxGridDataRow>();
@@ -63,7 +62,7 @@ namespace ontWifiTest {
         bool initialControlContext {
             set {
                 lblProgress.Text = "0 / 0";
-                lblTimeElapsed.Text = "00:00:00.0000";
+                lblTimeElapsed.Text = "00:00:00";
                 lblStatus.Text = "Ready!";
                 lblProjectName.Text = ProductName.ToString();
                 lblProjectVer.Text = string.Format("Verion: {0}", ProductVersion);
@@ -73,7 +72,7 @@ namespace ontWifiTest {
                 dgTXGrid.DataSource = txGridDataContext;
                 dgRXGrid.DataSource = null;
                 dgRXGrid.DataSource = rxGridDataContext;
-                btnStart.Focus();
+                testCount = 0;
             }
         }
 
@@ -95,6 +94,7 @@ namespace ontWifiTest {
         private void mainForm_Load(object sender, EventArgs e) {
             listControls = defaultSettings;
             initialControlContext = true;
+            btnStart.Focus();
         }
 
         /// <summary>
@@ -146,7 +146,6 @@ namespace ontWifiTest {
             op.Filter = "file *.txt|*.txt";
             if (op.ShowDialog() == DialogResult.OK) {
                 string tmpStr = op.FileName;
-                dataLines = null;
                 if ((!tmpStr.ToUpper().Contains("RX_")) && (!tmpStr.ToUpper().Contains("TX_"))) {
                     MessageBox.Show("File test case không hợp lệ.\nTên file phải bắt đầu bằng kí tự 'TX_' hoặc 'RX_'.\n----------------------------------------------\nVui lòng kiểm tra lại.","ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblType.Text = "--";
@@ -154,7 +153,6 @@ namespace ontWifiTest {
                     return;
                 }
                 lbltestcasefilePath.Text = tmpStr;
-                dataLines = File.ReadAllLines(tmpStr);
                 lblType.Text = tmpStr.ToUpper().Contains("TX") == true ? "TX" : "RX";
                 selectTabPage(lblType.Text);
             }
@@ -307,6 +305,8 @@ namespace ontWifiTest {
             };
             try {
                 debugWriteLine("> Tải dữ liệu từ test case file vào phần mềm...");
+                dataLines = null;
+                dataLines = File.ReadAllLines(lbltestcasefilePath.Text);
                 if (dataLines.Length > 0) {
                     bool ret = true;
                     foreach (var item in dataLines) {
@@ -475,16 +475,68 @@ namespace ontWifiTest {
             }
         }
 
+        string convertTime(int time) {
+            if (time < 10) return string.Format("0{0}", time);
+            else return time.ToString();
+        }
+
+        void startCalculateElapsedTime() {
+            _flag = false;
+            stTimeCount = new Stopwatch();
+            stTimeCount.Start();
+            MethodInvoker invoker_Ok = delegate {
+                int seconds =(int)stTimeCount.ElapsedMilliseconds / 1000;
+                int h = seconds / 3600;
+                int m = (seconds -  (h * 3600)) / 60;
+                int s = seconds - (h * 3600) - (m * 60);
+                lblTimeElapsed.Text = string.Format("{0}:{1}:{2}", convertTime(h), convertTime(m), convertTime(s));
+            };
+            threadTimeCount = new Thread(new ThreadStart(() => {
+                while (!_flag) {
+                    this.Invoke(invoker_Ok);
+                    Thread.Sleep(100);
+                }
+            }));
+            threadTimeCount.IsBackground = true;
+            threadTimeCount.Start();
+        }
+
+        void stopCalculateElapsedTime() {
+            try {
+                _flag = true;
+                threadTimeCount.Join(1);
+                threadTimeCount.Abort();
+            } catch { }
+        }
+
+        void startProgress(int total) {
+            lblProgress.Text = string.Format("{0} / {1}", 0, total);
+            progressBarTotal.Maximum = total;
+            progressBarTotal.Minimum = 0;
+            progressBarTotal.Value = 0;
+        }
+
+        void updateProgress(int value, int total) {
+            lblProgress.Text = string.Format("{0} / {1}", value, total);
+            progressBarTotal.Value = value;
+            Application.DoEvents();
+        }
+
         void InitControls() {
+            //Count time
+            startCalculateElapsedTime();
             btnStart.Enabled = false;
+            btnStart.Text = "STOP";
             initialControlContext = true;
             debugWriteLine("Starting...\n");
             Application.DoEvents();
         }
 
         void FinishControls() {
+            stopCalculateElapsedTime();
             debugWriteLine("\n...\nThe End >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             btnStart.Enabled = true;
+            btnStart.Text = "START";
             Application.DoEvents();
         }
 
@@ -499,8 +551,15 @@ namespace ontWifiTest {
             if (!load_AllTXTestCase()) goto END;
             //Select tab
             selectTabPage(lblType.Text);
+            //start show progress
+            int totaltestCount = txListTestCase.Count;
+            testCount = 0;
+            startProgress(totaltestCount);
             //Start LOOP
             foreach (var data in txListTestCase) {
+                //Update progress
+                testCount++;
+                updateProgress(testCount, totaltestCount);
                 //Send ONT command
                 if (!sendCommandToDUT(data)) goto END;
                 //Wait ....
