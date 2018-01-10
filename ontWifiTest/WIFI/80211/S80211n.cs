@@ -19,6 +19,7 @@ namespace WIFI
 
             //add one by one command into commandlist
             //commandList.Add("sh");
+            if (_bandWidth == 4) commandList.Add("wl down");
             commandList.Add("wl pkteng_stop rx");
             commandList.Add("wl pkteng_stop tx");
             commandList.Add("wl stbc_rx 0");

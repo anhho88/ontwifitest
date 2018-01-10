@@ -527,7 +527,7 @@ namespace TESTER
                 mbSession.Write(":POW:RANG " + range + "\n");
                 Thread.Sleep(100);
                 mbSession.Write("TRIG:EVM:SOUR " + trigger + "\n");
-                Thread.Sleep(1000);
+                //Thread.Sleep(1500);
                 //mbSession.Write(":INIT:CONT OFF");
 
                 //mbSession.Write(":FEED:RF:PORT:OUTP RFIO1" + "\n");

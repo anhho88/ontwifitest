@@ -253,8 +253,8 @@
             this.tableLayoutRight.Location = new System.Drawing.Point(373, 3);
             this.tableLayoutRight.Name = "tableLayoutRight";
             this.tableLayoutRight.RowCount = 3;
-            this.tableLayoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.07692F));
-            this.tableLayoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.92308F));
+            this.tableLayoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutRight.Size = new System.Drawing.Size(894, 896);
             this.tableLayoutRight.TabIndex = 0;
@@ -268,11 +268,11 @@
             this.tableLayoutLog.Controls.Add(this.btnExportExcel, 1, 0);
             this.tableLayoutLog.Controls.Add(this.panel4, 0, 0);
             this.tableLayoutLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutLog.Location = new System.Drawing.Point(3, 828);
+            this.tableLayoutLog.Location = new System.Drawing.Point(3, 829);
             this.tableLayoutLog.Name = "tableLayoutLog";
             this.tableLayoutLog.RowCount = 1;
             this.tableLayoutLog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutLog.Size = new System.Drawing.Size(888, 65);
+            this.tableLayoutLog.Size = new System.Drawing.Size(888, 64);
             this.tableLayoutLog.TabIndex = 1;
             // 
             // btnExportExcel
@@ -282,10 +282,11 @@
             this.btnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportExcel.Location = new System.Drawing.Point(771, 3);
             this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(114, 59);
+            this.btnExportExcel.Size = new System.Drawing.Size(114, 58);
             this.btnExportExcel.TabIndex = 0;
             this.btnExportExcel.Text = "Export";
             this.btnExportExcel.UseVisualStyleBackColor = false;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // panel4
             // 
@@ -294,7 +295,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(762, 59);
+            this.panel4.Size = new System.Drawing.Size(762, 58);
             this.panel4.TabIndex = 1;
             // 
             // lbltestcasefilePath
@@ -302,7 +303,7 @@
             this.lbltestcasefilePath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbltestcasefilePath.Location = new System.Drawing.Point(157, 0);
             this.lbltestcasefilePath.Name = "lbltestcasefilePath";
-            this.lbltestcasefilePath.Size = new System.Drawing.Size(605, 59);
+            this.lbltestcasefilePath.Size = new System.Drawing.Size(605, 58);
             this.lbltestcasefilePath.TabIndex = 1;
             this.lbltestcasefilePath.Text = "--";
             this.lbltestcasefilePath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -312,7 +313,7 @@
             this.label10.Dock = System.Windows.Forms.DockStyle.Left;
             this.label10.Location = new System.Drawing.Point(0, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 59);
+            this.label10.Size = new System.Drawing.Size(157, 58);
             this.label10.TabIndex = 0;
             this.label10.Text = "Test case file path:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -323,7 +324,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(888, 184);
+            this.panel1.Size = new System.Drawing.Size(888, 720);
             this.panel1.TabIndex = 4;
             // 
             // tabControl1
@@ -335,7 +336,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(888, 184);
+            this.tabControl1.Size = new System.Drawing.Size(888, 720);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -344,7 +345,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 38);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(880, 142);
+            this.tabPage1.Size = new System.Drawing.Size(880, 678);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "TX";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -356,7 +357,7 @@
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(874, 136);
+            this.panel2.Size = new System.Drawing.Size(874, 672);
             this.panel2.TabIndex = 0;
             // 
             // dgTXGrid
@@ -399,7 +400,7 @@
             this.dgTXGrid.RowHeadersVisible = false;
             this.dgTXGrid.RowTemplate.Height = 28;
             this.dgTXGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgTXGrid.Size = new System.Drawing.Size(874, 136);
+            this.dgTXGrid.Size = new System.Drawing.Size(874, 672);
             this.dgTXGrid.TabIndex = 6;
             // 
             // tabPage2
@@ -408,7 +409,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 38);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(880, 142);
+            this.tabPage2.Size = new System.Drawing.Size(880, 678);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "RX";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -420,7 +421,7 @@
             this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(874, 136);
+            this.panel3.Size = new System.Drawing.Size(874, 672);
             this.panel3.TabIndex = 0;
             // 
             // dgRXGrid
@@ -463,16 +464,16 @@
             this.dgRXGrid.RowHeadersVisible = false;
             this.dgRXGrid.RowTemplate.Height = 28;
             this.dgRXGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgRXGrid.Size = new System.Drawing.Size(874, 136);
+            this.dgRXGrid.Size = new System.Drawing.Size(874, 672);
             this.dgRXGrid.TabIndex = 7;
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.rtbDetails);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 193);
+            this.panel5.Location = new System.Drawing.Point(3, 729);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(888, 629);
+            this.panel5.Size = new System.Drawing.Size(888, 94);
             this.panel5.TabIndex = 5;
             // 
             // rtbDetails
@@ -485,7 +486,7 @@
             this.rtbDetails.ForeColor = System.Drawing.Color.Black;
             this.rtbDetails.Location = new System.Drawing.Point(0, 0);
             this.rtbDetails.Name = "rtbDetails";
-            this.rtbDetails.Size = new System.Drawing.Size(888, 629);
+            this.rtbDetails.Size = new System.Drawing.Size(888, 94);
             this.rtbDetails.TabIndex = 4;
             this.rtbDetails.Text = "";
             // 
