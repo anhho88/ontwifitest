@@ -63,11 +63,12 @@ namespace TESTER
         /// 
         /// </summary>
         /// <returns></returns>
-        public bool Connection() {
+        public bool Connection(ref string message) {
             try {
                 mbSession = (MessageBasedSession)ResourceManager.GetLocalManager().Open(MeasureEquip_IP);
                 return true;
-            }catch {
+            }catch(Exception ex) {
+                message = ex.ToString();
                 return false;
             }
         }
@@ -526,6 +527,9 @@ namespace TESTER
                 mbSession.Write(":POW:RANG " + range + "\n");
                 Thread.Sleep(100);
                 mbSession.Write("TRIG:EVM:SOUR " + trigger + "\n");
+                Thread.Sleep(1000);
+                //mbSession.Write(":INIT:CONT OFF");
+
                 //mbSession.Write(":FEED:RF:PORT:OUTP RFIO1" + "\n");
                 //mbSession.Write(":SOUR:LIST:STEP1:SET:AMPL " + power + "dBm" + "\n");
                 //mbSession.Write(":SOUR:LIST:STEP1:SET:CNFR " + frequency + "MHz" + "\n");
@@ -576,7 +580,6 @@ namespace TESTER
                 Thread.Sleep(100);
                 result_Value1 = InsertCommonEscapeSequences(result_Value1);
                 return result_Value1;
-
             }
             catch (Exception Ex) {
                 //wifiTesting_result1 = false;

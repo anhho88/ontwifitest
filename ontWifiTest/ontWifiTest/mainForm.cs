@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using LoadSaveFile;
 using DUT;
@@ -64,7 +64,6 @@ namespace ontWifiTest {
             set {
                 lblProgress.Text = "0 / 0";
                 lblTimeElapsed.Text = "00:00:00.0000";
-                lblType.Text = "--";
                 lblStatus.Text = "Ready!";
                 lblProjectName.Text = ProductName.ToString();
                 lblProjectVer.Text = string.Format("Verion: {0}", ProductVersion);
@@ -135,14 +134,29 @@ namespace ontWifiTest {
             this.Close();
         }
 
+        /// <summary>
+        /// Load file test case vao phan mem
+        /// ten file test case co ki tu :'TX_', 'RX_' la hop le
+        /// Neu ko se bao loi
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void loadTestCaseToolStripMenuItem_Click(object sender, EventArgs e) {
             OpenFileDialog op = new OpenFileDialog();
             op.Filter = "file *.txt|*.txt";
             if (op.ShowDialog() == DialogResult.OK) {
-                string Str = op.FileName;
-                lbltestcasefilePath.Text = Str;
-                dataLines = File.ReadAllLines(Str);
-                lblType.Text = Str.ToUpper().Contains("TX") == true ? "TX" : "RX";
+                string tmpStr = op.FileName;
+                dataLines = null;
+                if ((!tmpStr.ToUpper().Contains("RX_")) && (!tmpStr.ToUpper().Contains("TX_"))) {
+                    MessageBox.Show("File test case không hợp lệ.\nTên file phải bắt đầu bằng kí tự 'TX_' hoặc 'RX_'.\n----------------------------------------------\nVui lòng kiểm tra lại.","ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblType.Text = "--";
+                    lbltestcasefilePath.Text = "--";
+                    return;
+                }
+                lbltestcasefilePath.Text = tmpStr;
+                dataLines = File.ReadAllLines(tmpStr);
+                lblType.Text = tmpStr.ToUpper().Contains("TX") == true ? "TX" : "RX";
+                selectTabPage(lblType.Text);
             }
         }
 
@@ -154,6 +168,7 @@ namespace ontWifiTest {
 
         void debugWrite(string data) {
             rtbDetails.AppendText(data);
+            rtbDetails.ScrollToCaret();
         }
 
         void debugWriteLine(params string[] data) {
@@ -163,54 +178,61 @@ namespace ontWifiTest {
             else {
                 debugWrite(string.Format("{0}\n", data));
             }
-
         }
         #endregion
 
         #region Connect
         //Connect to ONT
         bool connectONT() {
+            int errCode = 0;
+            List<string> errContents = new List<string>() {
+                "Không thể mở luồng telnet tới DUT.", //errCode = 0
+                "Không thể đăng nhập được vào DUT.", //errCode = 1
+            };
             try {
                 bool result;
                 string message;
                 var Settings = Properties.Settings.Default;
-                debugWriteLine("Connecting to ONT...");
+                debugWriteLine("> Thiết lập kết nối tới DUT...");
                 ontDevice = new GW020(Settings.DUT, 23);
                 result = ontDevice.Connection();
-                if (!result) goto NG;
+                if (!result) { errCode = 0; goto NG; }
                 result = ontDevice.Login(Settings.User, Settings.Password, out message);
-                if (!result) goto NG;
+                if (!result) { errCode = 1; goto NG; }
                 ontDevice.WriteLine("sh");
                 message += ontDevice.Read();
                 goto OK;
             }
-            catch {
-                goto NG;
-            }
+            catch (Exception ex) { errCode = 2; errContents.Add(ex.ToString()); goto NG; }
             OK:
-            debugWriteLine("Connected");
+            debugWriteLine("# Thành công!");
             return true;
             NG:
-            debugWriteLine("Disconnected");
+            debugWriteLine("# Thất bại!");
+            debugWriteLine(errContents[errCode]);
             return false;
         }
 
         //Connect to Instrument
         bool connectInstrument() {
+            int errCode = 0;
+            List<string> errContents = new List<string>();
             try {
                 var Settings = Properties.Settings.Default;
-                debugWriteLine("Connecting to Instrument...");
+                debugWriteLine("> Thiết lập kết nối tới máy đo...");
                 Instrument = new EXM6640A(Settings.Instrument);
-                goto OK;
+                string msg = "";
+                bool ret = Instrument.Connection(ref msg);
+                if (ret) goto OK;
+                else { errCode = 0; errContents.Add(msg); goto NG; }
             }
-            catch {
-                goto NG;
-            }
+            catch(Exception ex) { errCode = 1; errContents.Add(ex.ToString()); goto NG; }
             OK:
-            debugWriteLine("Connected");
+            debugWriteLine("# Thành công!");
             return true;
             NG:
-            debugWriteLine("Disconnected");
+            debugWriteLine("# Thất bại!");
+            debugWriteLine(errContents[errCode]);
             return false;
         }
         #endregion
@@ -277,53 +299,236 @@ namespace ontWifiTest {
             }
         }
 
-
         bool load_AllTXTestCase() {
+            int errCode = 0;
+            List<string> errContents = new List<string>() {
+                "Định dạng file test case không hợp lệ.", //errCode = 0
+                "Chưa load file test case vào phần mềm.", //errCode = 1
+            };
             try {
-                debugWriteLine("Load all TX test case to list...");
+                debugWriteLine("> Tải dữ liệu từ test case file vào phần mềm...");
                 if (dataLines.Length > 0) {
                     bool ret = true;
                     foreach (var item in dataLines) {
                         bool result = convertInputData(item, ref txListTestCase);
                         if (!result) ret = false;
                     }
-                    if (!ret) goto NG;
+                    if (!ret) { errCode = 0; goto NG; }
                     else goto OK;
-                } else {
-                    goto NG;
-                }
+                } else { errCode = 1; goto NG; }
             }
-            catch {
-                goto NG;
-            }
+            catch(Exception ex) { errCode = 2; errContents.Add(ex.ToString()); goto NG;}
             OK:
-            debugWriteLine("Success");
+            debugWriteLine("# Thành công!");
             return true;
             NG:
-            debugWriteLine("Fail");
+            debugWriteLine("# Thất bại!");
+            debugWriteLine(errContents[errCode]);
+            return false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tabtitle">TX,RX</param>
+        private bool selectTabPage(string tabtitle) {
+            switch (tabtitle) {
+                case "TX": {
+                        tabControl1.SelectedTab = tabPage1;
+                        break;
+                    }
+                case "RX": {
+                        tabControl1.SelectedTab = tabPage2;
+                        break;
+                    }
+                default: break;
+            }
+            return true;
+        }
+
+        #endregion
+
+        #region SendCommandToDUT
+
+        bool GenerateCommand(ref S80211 s, dataFields data) {
+            try {
+                switch (data.wifi) {
+                    case "802.11b": {
+                            s = new S80211b(int.Parse(data.bandwidth), int.Parse(data.channel), (int)double.Parse(data.rate), int.Parse(data.power));
+                            break;
+                        }
+                    case "802.11g": {
+                            s = new S80211g(int.Parse(data.bandwidth), int.Parse(data.channel), int.Parse(data.rate), int.Parse(data.power), int.Parse(data.anten));
+                            break;
+                        }
+                    case "802.11nHT20": {
+                            s = new S80211n(2, int.Parse(data.channel), int.Parse(data.rate), int.Parse(data.power), int.Parse(data.anten));
+                            break;
+                        }
+                    case "802.11nHT40": {
+                            s = new S80211n(4, int.Parse(data.channel), int.Parse(data.rate), int.Parse(data.power), int.Parse(data.anten));
+                            break;
+                        }
+                    default: return false;
+                }
+                return true;
+            } catch {
+                return false;
+            }
+        }
+
+        bool sendCommandToDUT(dataFields data) {
+            int errCode = 0;
+            List<string> errContents = new List<string>() {
+                "Không thể tạo list command cho DUT.", //errCode = 0
+                "List command của DUT = 0.", //errCode = 1
+            };
+            try {
+                debugWriteLine("> Điều khiển DUT phát wifi...");
+                S80211 wifiUnit = null;
+                string msg;
+                if (!GenerateCommand(ref wifiUnit, data)) { errCode = 0; goto NG; }
+                if (wifiUnit.commandList.Count > 0) {
+                    ontDevice.sendListCommand(wifiUnit.commandList, out msg);
+                    debugWriteLine(msg);
+                }
+                else { errCode = 1; goto NG; }
+                goto OK;
+            } catch (Exception ex) { errCode = 2; errContents.Add(ex.ToString()); goto NG; }
+            OK:
+            debugWriteLine("# Thành công!");
+            return true;
+            NG:
+            debugWriteLine("# Thất bại!");
+            debugWriteLine(errContents[errCode]);
             return false;
         }
 
         #endregion
 
+        #region SendCommandToInstrument
 
+        private bool convertSettingDUTtoInstrument(dataFields dataIn, ref dataFields dataOut) {
+            try {
+                //Wifi
+                switch (dataIn.wifi) {
+                    case "802.11nHT20": { dataOut.wifi = "N20"; break; }
+                    case "802.11nHT40": { dataOut.wifi = "N40"; break; }
+                    case "802.11b": { dataOut.wifi = "BG"; break; }
+                    case "802.11g": { dataOut.wifi = "GDO"; break; }
+                    default: return false;
+                }
+                //Channel
+                dataOut.channel = ((int.Parse(dataIn.channel) * 5) + 2407).ToString();
+                return true;
+            } catch {
+                return false;
+            }
+        }
+
+        private bool sendCommandToInstrument(dataFields data) {
+            int errCode = 0;
+            List<string> errContents = new List<string>() {
+                "Không thể chuyển đổi dữ liệu wifi, channel từ DUT sang Instrument.", //errCode = 0
+            };
+            try {
+                debugWriteLine("> Cấu hình máy đo EXM6640A...");
+                dataFields df = new dataFields();
+                if (!convertSettingDUTtoInstrument(data, ref df)) { errCode = 0; goto NG; }
+                Instrument.config_HT20_RxTest_Transmitter(df.channel, df.wifi, "25", "RFB");
+                goto OK;
+            } catch (Exception ex) { errCode = 1; errContents.Add(ex.ToString()); goto NG; }
+            OK:
+            debugWriteLine("# Thành công!");
+            return true;
+            NG:
+            debugWriteLine("# Thất bại!");
+            debugWriteLine(errContents[errCode]);
+            return false;
+        }
+
+        #endregion
+
+        #region GetResult
+
+        bool getResult(dataFields dataIn,ref dataMeasures dataOut) {
+            try {
+                string result = Instrument.HienThi();
+                string[] buffer = result.Split(',');
+                dataOut.power = Convert.ToDouble(buffer[dataIn.wifi == "802.11b" ? 35 : 19]).ToString("00.00");
+                dataOut.freqErr = Convert.ToDouble(buffer[7]).ToString("00.00");
+                dataOut.sym = Convert.ToDouble(buffer[11]).ToString("00.00");
+                dataOut.evm = Convert.ToDouble(buffer[1]).ToString("00.00");
+                return true;
+            } catch {
+                return false;
+            }
+        }
+
+        #endregion
+
+        void delay(int miliseconds, int step) {
+            int count = (int)(miliseconds / step);
+            for (int i = 0; i < count; i++) {
+                Thread.Sleep(step);
+                Application.DoEvents();
+            }
+        }
+
+        void InitControls() {
+            btnStart.Enabled = false;
+            initialControlContext = true;
+            debugWriteLine("Starting...\n");
+            Application.DoEvents();
+        }
+
+        void FinishControls() {
+            debugWriteLine("\n...\nThe End >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            btnStart.Enabled = true;
+            Application.DoEvents();
+        }
 
         private void btnStart_Click(object sender, EventArgs e) {
+            //Khoi tao controls
+            InitControls();
             //Ket noi toi ONT
-            if (!connectONT()) return;
+            if (!connectONT()) goto END;
             //Ket noi toi Instrument
-            if (!connectInstrument()) return;
+            if (!connectInstrument()) goto END;
             //Load settings vao List....
-            if (!load_AllTXTestCase()) return;
-
+            if (!load_AllTXTestCase()) goto END;
+            //Select tab
+            selectTabPage(lblType.Text);
             //Start LOOP
-            //Send ONT command
-            //Wait ....
-            //Send Instrument command
-            //Wait ....
-            //Get result
-
-
+            foreach (var data in txListTestCase) {
+                //Send ONT command
+                if (!sendCommandToDUT(data)) goto END;
+                //Wait ....
+                delay(200, 20);
+                //Send Instrument command
+                if (!sendCommandToInstrument(data)) goto END;
+                //Wait ....
+                delay(200, 20);
+                //Get result
+                dataMeasures dm = new dataMeasures();
+                getResult(data, ref dm);
+                debugWriteLine(string.Format("> Result: {0}", dm.ToString()));
+                delay(3000, 100);
+            }
+            ////Send ONT command
+            //if (!sendCommandToDUT(txListTestCase[0])) goto END;
+            ////Wait ....
+            //delay(200, 20);
+            ////Send Instrument command
+            //if (!sendCommandToInstrument(txListTestCase[0])) goto END;
+            ////Wait ....
+            //delay(200, 20);
+            ////Get result
+            //dataMeasures dm = new dataMeasures();
+            //getResult(txListTestCase[0], ref dm);
+            //debugWriteLine(string.Format("> Result: {0}", dm.ToString()));
+            //
+            END: FinishControls();
         }
 
         #endregion
@@ -333,6 +538,18 @@ namespace ontWifiTest {
 
     #region CUSTOM USER
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+    public class dataMeasures {
+
+        public string power { get; set; }
+        public string freqErr { get; set; }
+        public string sym { get; set; }
+        public string evm { get; set; }
+
+        public override string ToString() {
+            return string.Format("\npower={0},\nfreqErr={1},\nSYM={2},\nEVM={3}", power, freqErr, sym, evm);
+        }
+    }
 
     /// <summary>
     /// 
