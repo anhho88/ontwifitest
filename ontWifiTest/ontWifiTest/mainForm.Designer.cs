@@ -45,8 +45,10 @@
             this.tableLayoutRight = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutLog = new System.Windows.Forms.TableLayoutPanel();
             this.btnExportExcel = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.tableLayoutBottom = new System.Windows.Forms.TableLayoutPanel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.lbltestcasefilePath = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -98,6 +100,8 @@
             this.tableLayoutContent.SuspendLayout();
             this.tableLayoutRight.SuspendLayout();
             this.tableLayoutLog.SuspendLayout();
+            this.tableLayoutBottom.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -266,7 +270,7 @@
             this.tableLayoutLog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutLog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutLog.Controls.Add(this.btnExportExcel, 1, 0);
-            this.tableLayoutLog.Controls.Add(this.panel4, 0, 0);
+            this.tableLayoutLog.Controls.Add(this.tableLayoutBottom, 0, 0);
             this.tableLayoutLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutLog.Location = new System.Drawing.Point(3, 829);
             this.tableLayoutLog.Name = "tableLayoutLog";
@@ -288,33 +292,57 @@
             this.btnExportExcel.UseVisualStyleBackColor = false;
             this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
-            // panel4
+            // tableLayoutBottom
             // 
-            this.panel4.Controls.Add(this.lbltestcasefilePath);
-            this.panel4.Controls.Add(this.label10);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(762, 58);
-            this.panel4.TabIndex = 1;
+            this.tableLayoutBottom.ColumnCount = 2;
+            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutBottom.Controls.Add(this.panel7, 1, 0);
+            this.tableLayoutBottom.Controls.Add(this.panel4, 0, 0);
+            this.tableLayoutBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutBottom.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutBottom.Name = "tableLayoutBottom";
+            this.tableLayoutBottom.RowCount = 1;
+            this.tableLayoutBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutBottom.Size = new System.Drawing.Size(762, 58);
+            this.tableLayoutBottom.TabIndex = 1;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.lbltestcasefilePath);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(173, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(586, 52);
+            this.panel7.TabIndex = 1;
             // 
             // lbltestcasefilePath
             // 
             this.lbltestcasefilePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbltestcasefilePath.Location = new System.Drawing.Point(157, 0);
+            this.lbltestcasefilePath.Location = new System.Drawing.Point(0, 0);
             this.lbltestcasefilePath.Name = "lbltestcasefilePath";
-            this.lbltestcasefilePath.Size = new System.Drawing.Size(605, 58);
-            this.lbltestcasefilePath.TabIndex = 1;
+            this.lbltestcasefilePath.Size = new System.Drawing.Size(586, 52);
+            this.lbltestcasefilePath.TabIndex = 2;
             this.lbltestcasefilePath.Text = "--";
             this.lbltestcasefilePath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label10);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(164, 52);
+            this.panel4.TabIndex = 2;
+            // 
             // label10
             // 
-            this.label10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Location = new System.Drawing.Point(0, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 58);
-            this.label10.TabIndex = 0;
+            this.label10.Size = new System.Drawing.Size(164, 52);
+            this.label10.TabIndex = 1;
             this.label10.Text = "Test case file path:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -486,6 +514,7 @@
             this.rtbDetails.ForeColor = System.Drawing.Color.Black;
             this.rtbDetails.Location = new System.Drawing.Point(0, 0);
             this.rtbDetails.Name = "rtbDetails";
+            this.rtbDetails.ReadOnly = true;
             this.rtbDetails.Size = new System.Drawing.Size(888, 94);
             this.rtbDetails.TabIndex = 4;
             this.rtbDetails.Text = "";
@@ -910,6 +939,8 @@
             this.tableLayoutContent.ResumeLayout(false);
             this.tableLayoutRight.ResumeLayout(false);
             this.tableLayoutLog.ResumeLayout(false);
+            this.tableLayoutBottom.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
@@ -987,9 +1018,6 @@
         private System.Windows.Forms.DataGridView dgTXGrid;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dgRXGrid;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lbltestcasefilePath;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.RichTextBox rtbDetails;
         private System.Windows.Forms.Label lblStatus;
@@ -1002,6 +1030,11 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oPTIONSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hELPToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutBottom;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label lbltestcasefilePath;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label10;
     }
 }
 

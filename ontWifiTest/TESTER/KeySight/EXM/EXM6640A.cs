@@ -518,10 +518,13 @@ namespace TESTER
                 //mbSession.Write(":SOUR:LIST:STEP2:SET IMM, 1ms, NONE, DOWN, 1000 MHz, -100 dBm, \"Off\", TIME, 1, 0, 1" + "\n");
                 //Thread.Sleep(50);
                 mbSession.Write(":SOURce:PRESet" + "\n");
-                Thread.Sleep(50);
+                Thread.Sleep(100);
                 mbSession.Write("INST:SEL WLAN" + "\n"); // cau lenh chi den WLAN
+                Thread.Sleep(100);
                 mbSession.Write(":RAD:STAN " + chuan + "\n");
+                Thread.Sleep(100);
                 mbSession.Write("FREQ:CENT " + frequency + "MHz" + "\n");
+                Thread.Sleep(100);
                 mbSession.Write(":CONF:EVM");
                 Thread.Sleep(100);
                 mbSession.Write(":POW:RANG " + range + "\n");
@@ -548,10 +551,10 @@ namespace TESTER
             return enable_nSISO_Testing;
         }
 
-
         public void config_HT20_RxTest_OUTPUT_OFF() {
             mbSession.Write(":OUTPut OFF\n");
         }
+
         public bool config_HT20_RxTest_Receiver(string frequency) {
             bool enable_nSISO_Testing = false;
             //bool wifiTesting_result1 = true;

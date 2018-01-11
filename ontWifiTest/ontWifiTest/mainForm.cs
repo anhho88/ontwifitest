@@ -23,6 +23,7 @@ namespace ontWifiTest {
 
 
         List<dataFields> txListTestCase = new List<dataFields>();
+        List<dataFields> rxListTestCase = new List<dataFields>();
         string[] dataLines;
         Stopwatch stTimeCount = null;
         Thread threadTimeCount = null;
@@ -159,21 +160,47 @@ namespace ontWifiTest {
 
         private void btnExportExcel_Click(object sender, EventArgs e) {
             SaveFileDialog saveFile = new SaveFileDialog();
+            string fileType = "";
+            if (tabControl1.SelectedTab == tabPage1) fileType = "TX";
+            else fileType = "RX";
+            saveFile.Title = string.Format("Save As {0} log file", fileType);
+            saveFile.FileName = fileType;
             saveFile.Filter = "*.csv|*.csv";
             if (saveFile.ShowDialog() == DialogResult.OK) {
-                if (txGridDataContext.Count > 0) {
-                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                    sb.AppendLine("WifiStandard,Anten,Bandwidth,Channel,Frequency,Rate,Power_Lower_Limit,Power_Actual,Power_Upper_Limit,FreqErr_Lower_Limit,FreqErr_Actual,FreqErr_Upper_Limit,SymClock_Actual,SymClock_Upper_Limit,EVM_Actual,EVM_Upper_Limit");
-                    foreach (var item in txGridDataContext) {
-                        sb.AppendLine(item.ToString());
-                    }
-                    System.IO.File.WriteAllText(string.Format("{0}", saveFile.FileName), sb.ToString());
-                    MessageBox.Show("Lưu file OK.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Process.Start(string.Format("{0}", saveFile.FileName));
+                switch (fileType) {
+                    case "TX": {
+                            if (txGridDataContext.Count > 0) {
+                                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                                sb.AppendLine("WifiStandard,Anten,Bandwidth,Channel,Frequency,Rate,Power_Lower_Limit,Power_Actual,Power_Upper_Limit,FreqErr_Lower_Limit,FreqErr_Actual,FreqErr_Upper_Limit,SymClock_Actual,SymClock_Upper_Limit,EVM_Actual,EVM_Upper_Limit");
+                                foreach (var item in txGridDataContext) {
+                                    sb.AppendLine(item.ToString());
+                                }
+                                System.IO.File.WriteAllText(string.Format("{0}", saveFile.FileName), sb.ToString());
+                                MessageBox.Show("Lưu file OK.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Process.Start(string.Format("{0}", saveFile.FileName));
+                            }
+                            else MessageBox.Show("Không có dữ liệu để lưu.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        }
+                    case "RX": {
+                            if (rxGridDataContext.Count > 0) {
+                                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                                sb.AppendLine("WifiStandard,Anten,Channel,Rate,Power_Actual,PacketSent,PacketGet,PER");
+                                foreach (var item in rxGridDataContext) {
+                                    sb.AppendLine(item.ToString());
+                                }
+                                System.IO.File.WriteAllText(string.Format("{0}", saveFile.FileName), sb.ToString());
+                                MessageBox.Show("Lưu file OK.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Process.Start(string.Format("{0}", saveFile.FileName));
+                            }
+                            else MessageBox.Show("Không có dữ liệu để lưu.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        }
+                    default: break;
                 }
-                else MessageBox.Show("Không có dữ liệu để lưu.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                
 
+            }
         }
 
         #endregion
@@ -374,19 +401,19 @@ namespace ontWifiTest {
             try {
                 switch (data.wifi) {
                     case "802.11b": {
-                            s = new S80211b(int.Parse(data.bandwidth), int.Parse(data.channel), (int)double.Parse(data.rate), int.Parse(data.power));
+                            s = new S80211b(int.Parse(data.bandwidth), int.Parse(data.channel), double.Parse(data.rate), int.Parse(data.power));
                             break;
                         }
                     case "802.11g": {
-                            s = new S80211g(int.Parse(data.bandwidth), int.Parse(data.channel), int.Parse(data.rate), int.Parse(data.power), int.Parse(data.anten));
+                            s = new S80211g(int.Parse(data.bandwidth), int.Parse(data.channel), double.Parse(data.rate), int.Parse(data.power), int.Parse(data.anten));
                             break;
                         }
                     case "802.11nHT20": {
-                            s = new S80211n(2, int.Parse(data.channel), int.Parse(data.rate), int.Parse(data.power), int.Parse(data.anten));
+                            s = new S80211n(2, int.Parse(data.channel), double.Parse(data.rate), int.Parse(data.power), int.Parse(data.anten));
                             break;
                         }
                     case "802.11nHT40": {
-                            s = new S80211n(4, int.Parse(data.channel), int.Parse(data.rate), int.Parse(data.power), int.Parse(data.anten));
+                            s = new S80211n(4, int.Parse(data.channel), double.Parse(data.rate), int.Parse(data.power), int.Parse(data.anten));
                             break;
                         }
                     default: return false;
@@ -409,8 +436,8 @@ namespace ontWifiTest {
                 S80211 wifiUnit = null;
                 string msg;
                 if (!GenerateCommand(ref wifiUnit, data)) { errCode = 0; goto NG; }
-                if (wifiUnit.commandList.Count > 0) {
-                    ontDevice.sendListCommand(wifiUnit.commandList, out msg);
+                if (wifiUnit.txCommandList.Count > 0) {
+                    ontDevice.sendListCommand(wifiUnit.txCommandList, out msg);
                     debugWriteLine(msg);
                 }
                 else { errCode = 1; goto NG; }
@@ -585,6 +612,7 @@ namespace ontWifiTest {
             initialControlContext = true;
             debugWriteLine("Starting...\n");
             this.Refresh();
+            lblStatus.Text = "testing...";
         }
 
         void FinishControls() {
@@ -592,6 +620,7 @@ namespace ontWifiTest {
             debugWriteLine("\n...\nThe End >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             btnStart.Enabled = true;
             btnStart.Text = "START";
+            lblStatus.Text = "completed!";
         }
 
         /// <summary>
@@ -630,9 +659,8 @@ namespace ontWifiTest {
             dgTXGrid.Rows[dgTXGrid.RowCount - 1].Selected = true;
             dgTXGrid.Refresh();
         }
-        #endregion
 
-        private void btnStart_Click(object sender, EventArgs e) {
+        void txTest() {
             Thread t = new Thread(new ThreadStart(() => {
                 this.Invoke(new MethodInvoker(delegate () {
                     //Khoi tao controls
@@ -661,7 +689,7 @@ namespace ontWifiTest {
                         //Send Instrument command
                         if (!sendCommandToInstrument(data)) goto END;
                         //Wait DUT tx stable
-                        delay(1000, 100);
+                        delay(3000, 100);
                         //Get result
                         dataMeasures dm = new dataMeasures();
                         int count = 0;
@@ -681,6 +709,32 @@ namespace ontWifiTest {
             }));
             t.IsBackground = true;
             t.Start();
+        }
+
+        void rxTest() {
+            Thread t = new Thread(new ThreadStart(() => {
+            }));
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        #endregion
+
+        private void btnStart_Click(object sender, EventArgs e) {
+            switch (lblType.Text) {
+                case "TX": {
+                        txTest();
+                        break;
+                    }
+                case "RX": {
+                        rxTest();
+                        break;
+                    }
+                default: {
+                        MessageBox.Show("Chưa load file test case vào phần mềm!\nVui lòng kiểm tra lại.\nClick 'File => Load test case'.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
+            }
         }
 
         #endregion
@@ -715,10 +769,15 @@ namespace ontWifiTest {
         public string channel { get; set; }
         public string rate { get; set; }
         public string power { get; set; }
+
+        public override string ToString() {
+            return string.Format("wifi={0}, bandwidth={1}, anten={2}, channnel={3}, rate={4}, power={5}", wifi, bandwidth, anten, channel, rate, power);
+        }
     }
 
     /// <summary>
     /// CLASS ĐỊNH NGHĨA KIỂU DỮ LIỆU CỦA CHO TXGRID
+    /// NaN = Not a Number
     /// </summary>
     public class txGridDataRow {
         private int _anten;
@@ -745,7 +804,7 @@ namespace ontWifiTest {
 
         public string PL_Limit { get; set; }
         public string Pwr {
-            get { return string.Format("{0} dBm", _pwr == 0 ? "NA" : _pwr.ToString()); }
+            get { return string.Format("{0} dBm", _pwr == 0 ? "NaN" : _pwr.ToString()); }
             set {
                 try {
                     _pwr = double.Parse(value);
@@ -757,7 +816,7 @@ namespace ontWifiTest {
 
         public string FEL_Limit { get; set; }
         public string FreqErr {
-            get { return string.Format("{0} kHz", _freqerr == 0 ? "NA" : _freqerr.ToString()); }
+            get { return string.Format("{0} kHz", _freqerr == 0 ? "NaN" : _freqerr.ToString()); }
             set {
                 try {
                     _freqerr = double.Parse(value);
@@ -770,7 +829,7 @@ namespace ontWifiTest {
 
 
         public string SymClock {
-            get { return string.Format("{0} ppm", _symclock == 0 ? "NA" : _symclock.ToString()); }
+            get { return string.Format("{0} ppm", _symclock == 0 ? "NaN" : _symclock.ToString()); }
             set {
                 try {
                     _symclock = double.Parse(value);
@@ -781,7 +840,7 @@ namespace ontWifiTest {
         public string SCU_Limit { get; set; }
 
         public string EVM {
-            get { return string.Format("{0} {1}", _evm == 0 ? "NA" : _evm.ToString(), this.Wifi.ToUpper().Contains("B") == true ? "%" : "dBm"); }
+            get { return string.Format("{0} {1}", _evm == 0 ? "NaN" : _evm.ToString(), this.Wifi.ToUpper().Contains("B") == true ? "%" : "dBm"); }
             set {
                 try {
                     _evm = double.Parse(value);
@@ -838,6 +897,10 @@ namespace ontWifiTest {
             get {
                 return ((packetGet * 1.0) / (packetSent * 1.0)).ToString("00.00%");
             }
+        }
+
+        public override string ToString() {
+            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7}", Wifi, ANT, Channel, Rate, Pwr, packetSent, packetGet, PER);
         }
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//

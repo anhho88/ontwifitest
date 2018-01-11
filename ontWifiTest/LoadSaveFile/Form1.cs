@@ -290,9 +290,9 @@ namespace LoadSaveFile
                         channel1 = "2462";
                     }
                     #endregion
-                    if (wifiUnit.commandList.Count > 0)
+                    if (wifiUnit.txCommandList.Count > 0)
                         {
-                            ontDevice.sendListCommand(wifiUnit.commandList, out msg);
+                            ontDevice.sendListCommand(wifiUnit.txCommandList, out msg);
                             this.Invoke(invoker_Ok);
                             Application.DoEvents();
                             
