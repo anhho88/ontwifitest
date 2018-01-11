@@ -1,0 +1,1 @@
+Wifi=802.11nHT20;Anten=1;Channel=1;Rate=7,6,5;Power=-30,-40,-50,-60,-70;packetSent=1000;waitSent=7000

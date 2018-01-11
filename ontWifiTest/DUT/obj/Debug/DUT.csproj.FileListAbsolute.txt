@@ -28,3 +28,9 @@ D:\Download\LoadSaveFile\DUT\obj\Debug\DUT.csprojResolveAssemblyReference.cache
 D:\Download\LoadSaveFile\DUT\obj\Debug\DUT.csproj.CoreCompileInputs.cache
 D:\Download\LoadSaveFile\DUT\obj\Debug\DUT.dll
 D:\Download\LoadSaveFile\DUT\obj\Debug\DUT.pdb
+C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\DUT\bin\Debug\DUT.dll
+C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\DUT\bin\Debug\DUT.pdb
+C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.csprojResolveAssemblyReference.cache
+C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.csproj.CoreCompileInputs.cache
+C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.dll
+C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.pdb

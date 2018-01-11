@@ -8,6 +8,7 @@ namespace WIFI
 {
     public class S80211b : S80211
     {
+        public int Anten { get; set; }
         public override List<string> txCommandList { get; set; }
         public override List<string> rxCommandList { get; set; }
 
@@ -46,10 +47,31 @@ namespace WIFI
             txCommandList.Add("wl pkteng_start 00:90:4C:21:00:8e tx 100 1024 0");
         }
 
-        public S80211b(int _channel, double _rate, int _power) : base(_channel, _rate, _power) {
+        public S80211b(int _channel, double _rate, int _anten) : base(_channel, _rate) {
+
+            this.Anten = _anten;
             rxCommandList = new List<string>();
             //add one by one command into rxCommandList
-
+            rxCommandList.Add("wlctl mpc 0");
+            rxCommandList.Add("wlctl interference 0");
+            rxCommandList.Add("wlctl phy_watchdog 0");
+            rxCommandList.Add("wlctl scansuppress 1");
+            rxCommandList.Add("wlctl down");
+            rxCommandList.Add("wlctl country ALL");
+            rxCommandList.Add("wlctl frameburst 0");
+            rxCommandList.Add("wlctl ampdu 0");
+            rxCommandList.Add("wlctl mimo_bw_cap 1");
+            rxCommandList.Add("wlctl up");
+            rxCommandList.Add("wlctl down");
+            rxCommandList.Add("wlctl mimo_tx_bw 2");
+            rxCommandList.Add(string.Format("wlctl chanspec {0}", _channel));
+            rxCommandList.Add("wlctl up");
+            rxCommandList.Add(string.Format("wlctl nrate -r {0}", _rate));
+            rxCommandList.Add("wlctl down");
+            rxCommandList.Add(string.Format("wlctl rxchain {0}", _anten));
+            rxCommandList.Add("wlctl up");
+            rxCommandList.Add("wlctl ssid \"\"");
+            rxCommandList.Add("wlctl pkteng_start 00:11:22:33:44:55 rx");
         }
 
     }

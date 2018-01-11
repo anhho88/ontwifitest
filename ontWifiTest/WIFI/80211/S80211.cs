@@ -59,10 +59,9 @@ namespace WIFI
             this.power = _power;
         }
 
-        public S80211(int _channel, double _rate, int _power) {
+        public S80211(int _channel, double _rate) {
             this.channel = _channel;
             this.rate = _rate;
-            this.power = _power;
         }
     }
 }

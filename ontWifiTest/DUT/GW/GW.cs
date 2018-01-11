@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DUT
@@ -34,6 +35,32 @@ namespace DUT
                 msg = ex.Message.ToString();
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="numb"></param>
+        /// <returns></returns>
+        public string get_WL_Counter_MAC(byte numb) {
+            string str_rxdcast = "";
+
+            if (base.IsConnected) {
+                base.WriteLine("wlctl counters");
+                Thread.Sleep(200);
+                string read_WLcounter = base.Read();
+
+                for (int i = 0; i < read_WLcounter.Split('\n').Length; i++) {
+                    if (read_WLcounter.Split('\n')[i].Contains("pktengrxducast")) {
+                        str_rxdcast = read_WLcounter.Split('\n')[i].Trim();
+                    }
+                }
+                if (numb == 1) {
+                    base.WriteLine("exit");
+                    Thread.Sleep(200);
+                }
+            }
+            return str_rxdcast;
         }
     }
 }

@@ -493,30 +493,6 @@ namespace TESTER
         {
             bool enable_nSISO_Testing = false;
             try {
-
-                //saveLogfile(g_logfilePath, "[BOL] Khởi tạo lần đầu cho thiết bị!\n");
-                // Cấu hình khối Source
-                //mbSession.Write(":SOURce:FREQuency " + frequency + "\n");
-                //Thread.Sleep(50);
-                //mbSession.Write(":SOURce:POWer " + power + "\n");
-                //mbSession.Write(":SOURce:PRESet" + "\n");
-                //Thread.Sleep(50);
-                //mbSession.Write(":SOUR:RAD:ARB:LOAD \"D:\\\\Waveform\\\\" + "001122334455_54M.wfm" + "\"" + "\n");
-                //mbSession.Write(":SOUR:RAD:ARB:LOAD \"D:\\\\Waveform\\\\" + "001122334455_H2M7.wfm" + "\"" + "\n");
-                //mbSession.Write(":SOUR:LIST:NUMB:STEP 3" + "\n");
-                //Thread.Sleep(50);
-                //mbSession.Write(":SOUR:LIST:STEP1:SET IMM,0.00000E+00,NONE,DOWN," + frequency + "MHz" + ",-1.2000000E+02,\"CW\",TIME,1.0000E-03,0,1" + "\n");
-                //Thread.Sleep(50);
-                //mbSession.Write(":SOUR:LIST:STEP2:SET INT,0.00000E+00,NONE,DOWN," + frequency + "MHz" + "," + power + "dBm" + ",\"001122334455_54M.wfm\",COUN," + packet_number + ",0,1" + "\n");
-                // Tại sao có STEP1 và STEP2??? 1 cái chỉ có FER còn 1 cái lại có cả FER và PW
-                //Thread.Sleep(50);
-                //mbSession.Write(":SOUR:LIST:STEP3:SET INT,1.00E-03,NONE,DOWN," + frequency + "MHz" + ",-1.2000000E+02,\"CW\",TIME,1.0000E-03,1,1" + "\n");
-                //??? STEP3 dùng để làm gì?
-                //mbSession.Write(":SOUR:LIST:STEP1:SET IMM, 1ms, NONE, DOWN, " + frequency + "MHz, " + power + "dBm, \"001122334455_54M.wfm\", COUN, " + packet_number + ", OFF, 255" + "\n");
-                //mbSession.Write(":SOUR:LIST:STEP1:SET IMM, 1ms, NONE, DOWN, " + frequency + "MHz, " + power + "dBm, \"" + waveform_file + "\", COUN, " + packet_number + ", OFF, 255" + "\n");
-                //Thread.Sleep(50);
-                //mbSession.Write(":SOUR:LIST:STEP2:SET IMM, 1ms, NONE, DOWN, 1000 MHz, -100 dBm, \"Off\", TIME, 1, 0, 1" + "\n");
-                //Thread.Sleep(50);
                 mbSession.Write(":SOURce:PRESet" + "\n");
                 Thread.Sleep(100);
                 mbSession.Write("INST:SEL WLAN" + "\n"); // cau lenh chi den WLAN
@@ -533,19 +509,10 @@ namespace TESTER
                 //Thread.Sleep(1500);
                 //mbSession.Write(":INIT:CONT OFF");
 
-                //mbSession.Write(":FEED:RF:PORT:OUTP RFIO1" + "\n");
-                //mbSession.Write(":SOUR:LIST:STEP1:SET:AMPL " + power + "dBm" + "\n");
-                //mbSession.Write(":SOUR:LIST:STEP1:SET:CNFR " + frequency + "MHz" + "\n");
-                //mbSession.Write(":SOUR:LIST:STEP1:SET:WAV \"CW\"" + "\n");
-                //mbSession.Write(":SOUR:LIST:STEP1:SET:DUR:TYPE CONT" + "\n");
-                //mbSession.Write(":SOUR:LIST ON" + "\n");//??         
-                //mbSession.Write(":SOUR:LIST:TRIG" + "\n");//??
-
             }
             catch (Exception a) {
                 enable_nSISO_Testing = false;
                 config_done = true;
-                //MessageBox.Show("Fail at WLAN_Config: " + a.Message); 
                 saveLogfile(g_logfilePath, "[E6640A]ERROR CODE: [Equip_Config] \n Error tai qua trinh cau hinh cho thiet bi do E6640A \n");
             }
             return enable_nSISO_Testing;
@@ -559,9 +526,6 @@ namespace TESTER
             bool enable_nSISO_Testing = false;
             //bool wifiTesting_result1 = true;
             try {
-                //string result_Value1 = string.Empty;
-                //mbSession.Write(":SOURce:PRESet" + "\n");
-                //Thread.Sleep(50);
                 mbSession.Write(":FEED:RF:PORT RFIO2" + "\n");
                 mbSession.Write("FREQ:CENT " + frequency + "MHz" + "\n");
 
@@ -570,6 +534,39 @@ namespace TESTER
                 //MessageBox.Show(Ex.ToString());
                 enable_nSISO_Testing = false;
                 saveLogfile(g_logfilePath, "[E6640A] ERROR CODE: [WIFI_Testing] \n \n Loi! xay ra tai qua trinh test Wifi \n");
+            }
+            return enable_nSISO_Testing;
+        }
+
+        public bool config_HT20_RxTest_MAC(string channel, string power, string packet_number, string waveform_file) {
+            bool enable_nSISO_Testing = false;
+            try {
+
+                string frequency = "";
+                frequency = ((int.Parse(channel) * 5) + 2407).ToString();
+
+                //saveLogfile(g_logfilePath, "[BOL] Khởi tạo lần đầu cho thiết bị!\n");
+                // Cấu hình khối Source
+                mbSession.Write(":SOURce:PRESet" + "\n");
+                Thread.Sleep(100);
+                mbSession.Write(":SOUR:RAD:ARB:LOAD \"D:\\\\Waveform\\\\" + waveform_file + "\"" + "\n");
+                mbSession.Write(":SOUR:LIST:NUMB:STEP 3" + "\n");   //Tạo 3 step
+                Thread.Sleep(100);
+                mbSession.Write(":SOUR:LIST:STEP1:SET IMM,0.00000E+00,NONE,DOWN," + frequency + "MHz" + ",-1.2000000E+02,\"CW\",TIME,1.0000E-03,0,1" + "\n");   //Thiết lập thông số cho step1
+                Thread.Sleep(1000);
+                mbSession.Write(":SOUR:LIST:STEP2:SET INT,0.00000E+00,NONE,DOWN," + frequency + "MHz" + "," + power + "dBm" + ",\"" + waveform_file + "\",COUN," + packet_number + ",0,1" + "\n");   //Thiết lập thông số cho step2
+                Thread.Sleep(1000);
+                mbSession.Write(":SOUR:LIST:STEP3:SET INT,1.00E-03,NONE,DOWN," + frequency + "MHz" + ",-1.2000000E+02,\"CW\",TIME,1.0000E-03,1,1" + "\n");  //Thiết lập thông số cho step3
+                Thread.Sleep(1000);
+                mbSession.Write(":SOUR:LIST ON" + "\n");
+                Thread.Sleep(100);
+                mbSession.Write(":SOUR:LIST:TRIG" + "\n");  //Bắt đầu phát waveform
+
+            }
+            catch (Exception a) {
+                enable_nSISO_Testing = false;
+                config_done = true; 
+                saveLogfile(g_logfilePath, "[E6640A]ERROR CODE: [Equip_Config] \n Error tai qua trinh cau hinh cho thiet bi do E6640A \n");
             }
             return enable_nSISO_Testing;
         }

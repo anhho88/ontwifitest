@@ -22,8 +22,8 @@ namespace ontWifiTest {
         EXM6640A Instrument = null;
 
 
-        List<dataFields> txListTestCase = new List<dataFields>();
-        List<dataFields> rxListTestCase = new List<dataFields>();
+        List<txdataFields> txListTestCase = new List<txdataFields>();
+        List<rxdataFields> rxListTestCase = new List<rxdataFields>();
         string[] dataLines;
         Stopwatch stTimeCount = null;
         Thread threadTimeCount = null;
@@ -69,8 +69,6 @@ namespace ontWifiTest {
                 lblProjectVer.Text = string.Format("Verion: {0}", ProductVersion);
                 rtbDetails.Clear();
                 progressBarTotal.Value = 0;
-                txGridDataContext.Clear();
-                dgTXGrid.DataSource = null;
                 testCount = 0;
             }
         }
@@ -84,6 +82,10 @@ namespace ontWifiTest {
             InitializeComponent();
             listControls = new List<TextBox>() { txtInstrAddress, txtPackets, txtWaitSent, txtDUTAddr, txtDUTUser, txtDUTPassword };
             initialControlContext = true;
+            txGridDataContext.Clear();
+            dgTXGrid.DataSource = null;
+            rxGridDataContext.Clear();
+            dgRXGrid.DataSource = null;
         }
 
         /// <summary>
@@ -152,7 +154,7 @@ namespace ontWifiTest {
                     return;
                 }
                 lbltestcasefilePath.Text = tmpStr;
-                lblType.Text = tmpStr.ToUpper().Contains("TX") == true ? "TX" : "RX";
+                lblType.Text = tmpStr.ToUpper().Contains("TX_") == true ? "TX" : (tmpStr.ToUpper().Contains("RX_") == true ? "RX" : "--");
                 selectTabPage(lblType.Text);
             }
         }
@@ -298,7 +300,7 @@ namespace ontWifiTest {
             }
         }
 
-        private bool convertInputData(string datainput, ref List<dataFields> list) {
+        private bool txconvertInputData(string datainput, ref List<txdataFields> list) {
             try {
                 //transfer data input to variables
                 string[] buffer = datainput.Split(';');
@@ -329,7 +331,7 @@ namespace ontWifiTest {
                     foreach (var chitem in channellist) {
                         foreach (var ritem in ratelist) {
                             foreach (var pitem in powerlist) {
-                                dataFields data = new dataFields() { wifi = _wifi, bandwidth = _bandwidth, anten = atitem, channel = chitem, rate = ritem, power = pitem };
+                                txdataFields data = new txdataFields() { wifi = _wifi, bandwidth = _bandwidth, anten = atitem, channel = chitem, rate = ritem, power = pitem };
                                 list.Add(data);
                             }
                         }
@@ -356,7 +358,7 @@ namespace ontWifiTest {
                 if (dataLines.Length > 0) {
                     bool ret = true;
                     foreach (var item in dataLines) {
-                        bool result = convertInputData(item, ref txListTestCase);
+                        bool result = txconvertInputData(item, ref txListTestCase);
                         if (!result) ret = false;
                     }
                     if (!ret) { errCode = 0; goto NG; }
@@ -395,9 +397,9 @@ namespace ontWifiTest {
 
         #endregion
 
-        #region SendCommandToDUT
+        #region Send TX Command To DUT
 
-        bool GenerateCommand(ref S80211 s, dataFields data) {
+        bool txGenerateCommand(ref S80211 s, txdataFields data) {
             try {
                 switch (data.wifi) {
                     case "802.11b": {
@@ -425,17 +427,17 @@ namespace ontWifiTest {
             }
         }
 
-        bool sendCommandToDUT(dataFields data) {
+        bool sendtxCommandToDUT(txdataFields data) {
             int errCode = 0;
             List<string> errContents = new List<string>() {
-                "Không thể tạo list command cho DUT.", //errCode = 0
-                "List command của DUT = 0.", //errCode = 1
+                "Không thể tạo list tx command cho DUT.", //errCode = 0
+                "List tx command của DUT = 0.", //errCode = 1
             };
             try {
                 debugWriteLine("> Điều khiển DUT phát wifi...");
                 S80211 wifiUnit = null;
                 string msg;
-                if (!GenerateCommand(ref wifiUnit, data)) { errCode = 0; goto NG; }
+                if (!txGenerateCommand(ref wifiUnit, data)) { errCode = 0; goto NG; }
                 if (wifiUnit.txCommandList.Count > 0) {
                     ontDevice.sendListCommand(wifiUnit.txCommandList, out msg);
                     debugWriteLine(msg);
@@ -455,9 +457,9 @@ namespace ontWifiTest {
 
         #endregion
 
-        #region SendCommandToInstrument
+        #region Send TX Command To Instrument
 
-        private bool convertSettingDUTtoInstrument(dataFields dataIn, ref dataFields dataOut) {
+        private bool convertSettingDUTtoInstrument(txdataFields dataIn, ref txdataFields dataOut) {
             try {
                 //Wifi
                 switch (dataIn.wifi) {
@@ -486,14 +488,14 @@ namespace ontWifiTest {
             }
         }
 
-        private bool sendCommandToInstrument(dataFields data) {
+        private bool sendtxCommandToInstrument(txdataFields data) {
             int errCode = 0;
             List<string> errContents = new List<string>() {
                 "Không thể chuyển đổi dữ liệu wifi, channel từ DUT sang Instrument.", //errCode = 0
             };
             try {
                 debugWriteLine("> Cấu hình máy đo EXM6640A...");
-                dataFields df = new dataFields();
+                txdataFields df = new txdataFields();
                 if (!convertSettingDUTtoInstrument(data, ref df)) { errCode = 0; goto NG; }
                 Instrument.config_HT20_RxTest_Transmitter(df.channel, df.wifi, "25", "RFB");
                 goto OK;
@@ -510,7 +512,7 @@ namespace ontWifiTest {
 
         #endregion
 
-        #region GetResult
+        #region Get TX Result
 
         string convertNR3ToDecimal(string nr3, int div) {
             string[] buffer = nr3.Split('E');
@@ -520,7 +522,7 @@ namespace ontWifiTest {
             return Math.Round(result / div, 2).ToString();
         }
 
-        bool getResult(dataFields dataIn, ref dataMeasures dataOut) {
+        bool getResult(txdataFields dataIn, ref txdataMeasures dataOut) {
             try {
                 string result = Instrument.HienThi();
                 string[] buffer = result.Split(',');
@@ -540,6 +542,7 @@ namespace ontWifiTest {
         #region SubFunction
 
         void delay(int miliseconds, int step) {
+            debugWriteLine(string.Format("Wait {0}ms...", miliseconds));
             int count = (int)(miliseconds / step);
             for (int i = 0; i < count; i++) {
                 Thread.Sleep(step);
@@ -610,6 +613,13 @@ namespace ontWifiTest {
             btnStart.Enabled = false;
             btnStart.Text = "STOP";
             initialControlContext = true;
+            if (lblType.Text=="TX") {
+                txGridDataContext.Clear();
+                dgTXGrid.DataSource = null;
+            } else {
+                rxGridDataContext.Clear();
+                dgRXGrid.DataSource = null;
+            }
             debugWriteLine("Starting...\n");
             this.Refresh();
             lblStatus.Text = "testing...";
@@ -628,7 +638,7 @@ namespace ontWifiTest {
         /// </summary>
         /// <param name="data1"></param>
         /// <param name="data2"></param>
-        void displayResultToGrid(dataFields data1, dataMeasures data2) {
+        void displaytxResultToGrid(txdataFields data1, txdataMeasures data2) {
             txGridDataRow data = new txGridDataRow();
             //
             data.Wifi = data1.wifi;
@@ -660,6 +670,42 @@ namespace ontWifiTest {
             dgTXGrid.Refresh();
         }
 
+        void displayrxResultToGrid(rxdataFields data1,ref rxdataMeasures data2) {
+            rxGridDataRow data = new rxGridDataRow();
+            //
+            data.Wifi = data1.wifi;
+            data.ANT = data1.anten;
+            data.Channel = int.Parse(data1.channel);
+            data.Rate = double.Parse(data1.rate);
+            data.Pwr = data1.power;
+            data.packetSent = int.Parse(data1.packetSent);
+            data.packetGet = int.Parse(data2.packetGet);
+            data2.PER = data.PER;
+
+            dgRXGrid.DataSource = null;
+            rxGridDataContext.Add(data);
+            dgRXGrid.DataSource = rxGridDataContext;
+            dgRXGrid.ClearSelection();
+            dgRXGrid.FirstDisplayedScrollingRowIndex = dgRXGrid.RowCount - 1;
+            dgRXGrid.Rows[dgRXGrid.RowCount - 1].Selected = true;
+            dgRXGrid.Refresh();
+        }
+
+        bool rxGetWLCounter(ref double count, byte time) {
+            try {
+                string data = ontDevice.get_WL_Counter_MAC(time);
+                if (!(data.Trim().Contains("pktengrxducast") && data.Trim().Contains("pktengrxdmcast"))) return false;
+                int fistmmcast_index = data.IndexOf("pktengrxducast");
+                int lastmmcast_index = data.IndexOf("pktengrxdmcast");
+                string numb_Counter = data.Substring(fistmmcast_index + 15, lastmmcast_index - 16);
+                count = double.Parse(numb_Counter);
+                return true;
+            } catch {
+                return false;
+            }
+        }
+
+
         void txTest() {
             Thread t = new Thread(new ThreadStart(() => {
                 this.Invoke(new MethodInvoker(delegate () {
@@ -683,15 +729,15 @@ namespace ontWifiTest {
                         testCount++;
                         updateProgress(testCount, totaltestCount);
                         //Send ONT command
-                        if (!sendCommandToDUT(data)) goto END;
+                        if (!sendtxCommandToDUT(data)) goto END;
                         //Wait ....
                         delay(200, 20);
                         //Send Instrument command
-                        if (!sendCommandToInstrument(data)) goto END;
+                        if (!sendtxCommandToInstrument(data)) goto END;
                         //Wait DUT tx stable
                         delay(3000, 100);
                         //Get result
-                        dataMeasures dm = new dataMeasures();
+                        txdataMeasures dm = new txdataMeasures();
                         int count = 0;
                         REPEAT:
                         {
@@ -701,7 +747,7 @@ namespace ontWifiTest {
                             }
                         }
                         //Hien thi ket qua do len Grid
-                        displayResultToGrid(data, dm);
+                        displaytxResultToGrid(data, dm);
                         debugWriteLine(string.Format("> Result: {0}\n", dm.ToString()));
                     }
                     END: FinishControls();
@@ -713,9 +759,231 @@ namespace ontWifiTest {
 
         void rxTest() {
             Thread t = new Thread(new ThreadStart(() => {
+                this.Invoke(new MethodInvoker(delegate () {
+                    //Khoi tao controls
+                    InitControls();
+                    //Ket noi toi ONT
+                    if (!connectONT()) goto END;
+                    //Ket noi toi Instrument
+                    if (!connectInstrument()) goto END;
+                    //Load settings vao List....
+                    if (!load_AllRXTestCase()) goto END;
+                    //Select tab
+                    selectTabPage(lblType.Text);
+                    //start show progress
+                    int totaltestCount = rxListTestCase.Count;
+                    testCount = 0;
+                    startProgress(totaltestCount);
+                    //Start LOOP
+                    foreach (var data in rxListTestCase) {
+                        double sCounter = 0, eCounter = 0;
+                        //Update progress
+                        testCount++;
+                        updateProgress(testCount, totaltestCount);
+                        //Set ONT receive packets
+                        if (!sendrxCommandToDUT(data)) goto END;
+                        //Wait ....
+                        delay(200, 20);
+                        //Read current value of packets counter
+                        int count = 0;
+                        LOOP:
+                        {
+                            count++;
+                            if (!rxGetWLCounter(ref sCounter, 0)) {
+                                if (count <= 3) goto LOOP;
+                            }
+                        }
+                        debugWriteLine(sCounter.ToString());
+
+                        //Set Instrument transmit packets
+                        if (!sendrxCommandToInstrument(data)) goto END;
+
+                        //Wait packets transmit completed
+                        delay(int.Parse(data.waitSent), 100);
+
+                        //Read current value of packets counter
+                        rxdataMeasures dm = new rxdataMeasures();
+                        count = 0;
+                        REPEAT:
+                        {
+                            count++;
+                            if (!rxGetWLCounter(ref eCounter, 0)) {
+                                if (count <= 3) goto REPEAT;
+                            }
+                        }
+                        dm.packetGet = ((int)(eCounter - sCounter)).ToString();
+                        debugWriteLine(eCounter.ToString());
+
+                        //Hien thi ket qua do len Grid
+                        displayrxResultToGrid(data, ref dm);
+                        debugWriteLine(string.Format("> Result: {0}\n", dm.ToString()));
+                    }
+
+                    END: FinishControls();
+                }));
             }));
             t.IsBackground = true;
             t.Start();
+        }
+
+        #endregion
+
+        #region Load_RX_TestCase
+
+        private bool rxconvertInputData(string datainput, ref List<rxdataFields> list) {
+            try {
+                //transfer data input to variables
+                string[] buffer = datainput.Split(';');
+                string _wifi = buffer[0].Split('=')[1];
+                string _anten = buffer[1].Split('=')[1];
+                string _channel = buffer[2].Split('=')[1];
+                string _rate = buffer[3].Split('=')[1];
+                string _power = buffer[4].Split('=')[1];
+                string _packetSent = buffer[5].Split('=')[1];
+                string _waitSent = buffer[6].Split('=')[1];
+
+                //transfer variables to ienumerator
+                bool ret;
+                List<string> antenlist = new List<string>();
+                List<string> channellist = new List<string>();
+                List<string> ratelist = new List<string>();
+                List<string> powerlist = new List<string>();
+
+                ret = convertStringtoList(_anten, ref antenlist);
+                ret = convertStringtoList(_channel, ref channellist);
+                ret = convertStringtoList(_rate, ref ratelist);
+                ret = convertStringtoList(_power, ref powerlist);
+
+                //transfer data from ienumerator to list
+                foreach (var atitem in antenlist) {
+                    foreach (var chitem in channellist) {
+                        foreach (var ritem in ratelist) {
+                            foreach (var pitem in powerlist) {
+                                rxdataFields data = new rxdataFields() { wifi = _wifi, anten = atitem, channel = chitem, rate = ritem, power = pitem, packetSent = _packetSent, waitSent = _waitSent };
+                                list.Add(data);
+                            }
+                        }
+                    }
+                }
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
+
+        bool load_AllRXTestCase() {
+            int errCode = 0;
+            List<string> errContents = new List<string>() {
+                "Định dạng file test case không hợp lệ.", //errCode = 0
+                "Chưa load file test case vào phần mềm.", //errCode = 1
+            };
+            try {
+                debugWriteLine("> Tải dữ liệu từ test case file vào phần mềm...");
+                dataLines = null;
+                rxListTestCase.Clear();
+                dataLines = File.ReadAllLines(lbltestcasefilePath.Text);
+                if (dataLines.Length > 0) {
+                    bool ret = true;
+                    foreach (var item in dataLines) {
+                        bool result = rxconvertInputData(item, ref rxListTestCase);
+                        if (!result) ret = false;
+                    }
+                    if (!ret) { errCode = 0; goto NG; }
+                    else goto OK;
+                }
+                else { errCode = 1; goto NG; }
+            }
+            catch (Exception ex) { errCode = 2; errContents.Add(ex.ToString()); goto NG; }
+            OK:
+            debugWriteLine("# Thành công!");
+            return true;
+            NG:
+            debugWriteLine("# Thất bại!");
+            debugWriteLine(errContents[errCode]);
+            return false;
+        }
+
+        #endregion
+
+        #region Send RX Command To DUT
+
+        bool rxGenerateCommand(ref S80211 s, rxdataFields data) {
+            try {
+                switch (data.wifi) {
+                    case "802.11b": {
+                            s = new S80211b(int.Parse(data.channel), double.Parse(data.rate), int.Parse(data.anten));
+                            break;
+                        }
+                    case "802.11g": {
+                            s = new S80211g(int.Parse(data.channel), double.Parse(data.rate), int.Parse(data.anten));
+                            break;
+                        }
+                    case "802.11nHT20": {
+                            s = new S80211n(int.Parse(data.channel), double.Parse(data.rate), int.Parse(data.anten));
+                            break;
+                        }
+                    case "802.11nHT40": {
+                            s = new S80211n(int.Parse(data.channel), double.Parse(data.rate), int.Parse(data.anten));
+                            break;
+                        }
+                    default: return false;
+                }
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
+
+        bool sendrxCommandToDUT(rxdataFields data) {
+            int errCode = 0;
+            List<string> errContents = new List<string>() {
+                "Không thể tạo list rx command cho DUT.", //errCode = 0
+                "List rx command của DUT = 0.", //errCode = 1
+            };
+            try {
+                debugWriteLine("> Điều khiển DUT nhận gói tin...");
+                S80211 wifiUnit = null;
+                string msg;
+                if (!rxGenerateCommand(ref wifiUnit, data)) { errCode = 0; goto NG; }
+                if (wifiUnit.rxCommandList.Count > 0) {
+                    ontDevice.sendListCommand(wifiUnit.rxCommandList, out msg);
+                    debugWriteLine(msg);
+                }
+                else { errCode = 1; goto NG; }
+                goto OK;
+            }
+            catch (Exception ex) { errCode = 2; errContents.Add(ex.ToString()); goto NG; }
+            OK:
+            debugWriteLine("# Thành công!");
+            return true;
+            NG:
+            debugWriteLine("# Thất bại!");
+            debugWriteLine(errContents[errCode]);
+            return false;
+        }
+
+        #endregion
+
+        #region Send RX Command To Instrument
+
+        private bool sendrxCommandToInstrument(rxdataFields data) {
+            int errCode = 0;
+            List<string> errContents = new List<string>() { "Khong cau hinh duoc may do."};
+            try {
+                debugWriteLine("> Cấu hình máy đo EXM6640A...");
+                if(Instrument.config_HT20_RxTest_MAC(data.channel, data.power, data.packetSent, "001122334455_H2M7.wfm")) goto NG;
+                goto OK;
+            }
+            catch (Exception ex) { errCode = 1; errContents.Add(ex.ToString()); goto NG; }
+            OK:
+            debugWriteLine("# Thành công!");
+            return true;
+            NG:
+            debugWriteLine("# Thất bại!");
+            debugWriteLine(errContents[errCode]);
+            return false;
         }
 
         #endregion
@@ -746,7 +1014,7 @@ namespace ontWifiTest {
     #region CUSTOM USER
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-    public class dataMeasures {
+    public class txdataMeasures {
 
         public string power { get; set; }
         public string freqErr { get; set; }
@@ -758,10 +1026,17 @@ namespace ontWifiTest {
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public class dataFields {
+    public class rxdataMeasures {
+        
+        public string packetGet { get; set; }
+        public string PER { get; set; }
+
+        public override string ToString() {
+            return string.Format("\npacketGet={0},\nPER={1}", packetGet, PER);
+        }
+    }
+
+    public class txdataFields {
 
         public string wifi { get; set; }
         public string bandwidth { get; set; }
@@ -772,6 +1047,21 @@ namespace ontWifiTest {
 
         public override string ToString() {
             return string.Format("wifi={0}, bandwidth={1}, anten={2}, channnel={3}, rate={4}, power={5}", wifi, bandwidth, anten, channel, rate, power);
+        }
+    }
+
+    public class rxdataFields {
+
+        public string wifi { get; set; }
+        public string anten { get; set; }
+        public string channel { get; set; }
+        public string rate { get; set; }
+        public string power { get; set; }
+        public string packetSent { get; set; }
+        public string waitSent { get; set; }
+
+        public override string ToString() {
+            return string.Format("wifi={0}, anten={1}, channel={2}, rate={3}, power={4}, packetSent={5}, waitSent={6}", wifi, anten, channel, rate, power, packetSent, waitSent);
         }
     }
 
@@ -787,7 +1077,6 @@ namespace ontWifiTest {
         private double _symclock;
         private int _bandwidth;
 
-        //public int Order { get; set; }
         public string Wifi { get; set; }
         public string ANT {
             get { return string.Format("ANT {0}", _anten); }
@@ -800,8 +1089,6 @@ namespace ontWifiTest {
         public int Channel { get; set; }
         public int Freq { get; set; }
         public double Rate { get; set; }
-        //public double Power { get; set; }
-
         public string PL_Limit { get; set; }
         public string Pwr {
             get { return string.Format("{0} dBm", _pwr == 0 ? "NaN" : _pwr.ToString()); }
@@ -895,7 +1182,7 @@ namespace ontWifiTest {
         public int packetGet { get; set; }
         public string PER {
             get {
-                return ((packetGet * 1.0) / (packetSent * 1.0)).ToString("00.00%");
+                return (((packetSent - packetGet) * 1.0) / (packetSent * 1.0)).ToString("00.00%");
             }
         }
 
