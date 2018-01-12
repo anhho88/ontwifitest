@@ -83,3 +83,4 @@ C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\LoadSaveFile\obj\Debug\L
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.csproj.CoreCompileInputs.cache
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.exe
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.pdb
+C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\LoadSaveFile\obj\Debug\LoadSaveFile.rxConfig.resources

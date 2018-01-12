@@ -203,21 +203,22 @@
             this.tXToolStripMenuItem,
             this.rXToolStripMenuItem});
             this.testCaseToolStripMenuItem.Name = "testCaseToolStripMenuItem";
-            this.testCaseToolStripMenuItem.Size = new System.Drawing.Size(165, 30);
+            this.testCaseToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.testCaseToolStripMenuItem.Text = "&Test case";
             // 
             // tXToolStripMenuItem
             // 
             this.tXToolStripMenuItem.Name = "tXToolStripMenuItem";
-            this.tXToolStripMenuItem.Size = new System.Drawing.Size(118, 30);
+            this.tXToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.tXToolStripMenuItem.Text = "TX";
             this.tXToolStripMenuItem.Click += new System.EventHandler(this.tXToolStripMenuItem_Click);
             // 
             // rXToolStripMenuItem
             // 
             this.rXToolStripMenuItem.Name = "rXToolStripMenuItem";
-            this.rXToolStripMenuItem.Size = new System.Drawing.Size(118, 30);
+            this.rXToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.rXToolStripMenuItem.Text = "RX";
+            this.rXToolStripMenuItem.Click += new System.EventHandler(this.rXToolStripMenuItem_Click);
             // 
             // oPTIONSToolStripMenuItem
             // 
@@ -725,9 +726,9 @@
             this.txtInstrAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtInstrAddress.Enabled = false;
             this.txtInstrAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInstrAddress.Location = new System.Drawing.Point(5, 93);
+            this.txtInstrAddress.Location = new System.Drawing.Point(12, 93);
             this.txtInstrAddress.Name = "txtInstrAddress";
-            this.txtInstrAddress.Size = new System.Drawing.Size(321, 26);
+            this.txtInstrAddress.Size = new System.Drawing.Size(314, 26);
             this.txtInstrAddress.TabIndex = 1;
             // 
             // label2
@@ -903,9 +904,9 @@
             this.lblTimeElapsed.ForeColor = System.Drawing.Color.White;
             this.lblTimeElapsed.Location = new System.Drawing.Point(123, 42);
             this.lblTimeElapsed.Name = "lblTimeElapsed";
-            this.lblTimeElapsed.Size = new System.Drawing.Size(140, 25);
+            this.lblTimeElapsed.Size = new System.Drawing.Size(98, 25);
             this.lblTimeElapsed.TabIndex = 1;
-            this.lblTimeElapsed.Text = "00:00:00.000";
+            this.lblTimeElapsed.Text = "00:00:00";
             // 
             // label20
             // 

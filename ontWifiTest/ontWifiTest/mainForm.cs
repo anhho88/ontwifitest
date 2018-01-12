@@ -57,13 +57,54 @@ namespace ontWifiTest {
                 Settings.Save();
             }
         }
+
+        Dictionary<double, string> waveFormN40 = new Dictionary<double, string>() {
+            {0, "001122334455_H4M0.wfm"},
+            {1, "001122334455_H4M1.wfm"},
+            {2, "001122334455_H4M2.wfm"},
+            {3, "001122334455_H4M3.wfm"},
+            {4, "001122334455_H4M4.wfm"},
+            {5, "001122334455_H4M5.wfm"},
+            {6, "001122334455_H4M6.wfm"},
+            {7, "001122334455_H4M7.wfm"}
+        };
+
+        Dictionary<double, string> waveFormN20 = new Dictionary<double, string>() {
+            {0, "001122334455_H2M0.wfm"},
+            {1, "001122334455_H2M1.wfm"},
+            {2, "001122334455_H2M2.wfm"},
+            {3, "001122334455_H2M3.wfm"},
+            {4, "001122334455_H2M4.wfm"},
+            {5, "001122334455_H2M5.wfm"},
+            {6, "001122334455_H2M6.wfm"},
+            {7, "001122334455_H2M7.wfm"}
+        };
+
+        Dictionary<double, string> waveFormG = new Dictionary<double, string>() {
+            {6, "001122334455_6M.wfm"},
+            {9, "001122334455_9M.wfm"},
+            {12, "001122334455_12M.wfm"},
+            {18, "001122334455_18M.wfm"},
+            {24, "001122334455_24M.wfm"},
+            {36, "001122334455_36M.wfm"},
+            {48, "001122334455_48M.wfm"},
+            {54, "001122334455_54M.wfm"}
+        };
+
+        Dictionary<double, string> waveFormB = new Dictionary<double, string>() {
+            {1, "001122334455_1ML.wfm"},
+            {2, "001122334455_2ML.wfm"},
+            {5.5, "001122334455_5ML.wfm"},
+            {11, "001122334455_11ML.wfm"}
+        };
+
         /// <summary>
         /// INIT CONTROL DATACONTENT
         /// </summary>
         bool initialControlContext {
             set {
                 lblProgress.Text = "0 / 0";
-                lblTimeElapsed.Text = "00:00:00.000";
+                lblTimeElapsed.Text = "00:00:00";
                 lblStatus.Text = "Ready!";
                 lblProjectName.Text = ProductName.ToString();
                 lblProjectVer.Text = string.Format("Verion: {0}", ProductVersion);
@@ -129,6 +170,11 @@ namespace ontWifiTest {
         private void tXToolStripMenuItem_Click(object sender, EventArgs e) {
             LoadSaveFile.txConfig tfrm = new LoadSaveFile.txConfig();
             tfrm.ShowDialog();
+        }
+
+        private void rXToolStripMenuItem_Click(object sender, EventArgs e) {
+            LoadSaveFile.rxConfig rfrm = new LoadSaveFile.rxConfig();
+            rfrm.ShowDialog();
         }
 
         private void exitToolStripMenuItem_Click_1(object sender, EventArgs e) {
@@ -542,10 +588,17 @@ namespace ontWifiTest {
         #region SubFunction
 
         void delay(int miliseconds, int step) {
-            debugWriteLine(string.Format("Wait {0}ms...", miliseconds));
+            debugWriteLine(string.Format("Wait {0}ms ...", miliseconds));
             int count = (int)(miliseconds / step);
             for (int i = 0; i < count; i++) {
                 Thread.Sleep(step);
+            }
+        }
+
+        void DELAY(int seconds) {
+            for (int i = 0; i < seconds; i++) {
+                debugWriteLine(string.Format("Wait {0}ms ...", seconds - i));
+                Thread.Sleep(1000);
             }
         }
 
@@ -570,8 +623,7 @@ namespace ontWifiTest {
                 int h = seconds / 3600;
                 int m = (seconds - (h * 3600)) / 60;
                 int s = seconds - (h * 3600) - (m * 60);
-                int ms = miliseconds - (h * 3600 + m * 60 + seconds) * 1000;
-                lblTimeElapsed.Text = string.Format("{0}:{1}:{2}.{3}", convertTime(h), convertTime(m), convertTime(s), convertms(ms));
+                lblTimeElapsed.Text = string.Format("{0}:{1}:{2}", convertTime(h), convertTime(m), convertTime(s));
                 lblTimeElapsed.Refresh();
             };
             threadTimeCount = new Thread(new ThreadStart(() => {
@@ -705,7 +757,6 @@ namespace ontWifiTest {
             }
         }
 
-
         void txTest() {
             Thread t = new Thread(new ThreadStart(() => {
                 this.Invoke(new MethodInvoker(delegate () {
@@ -793,13 +844,12 @@ namespace ontWifiTest {
                                 if (count <= 3) goto LOOP;
                             }
                         }
-                        debugWriteLine(sCounter.ToString());
 
                         //Set Instrument transmit packets
                         if (!sendrxCommandToInstrument(data)) goto END;
 
                         //Wait packets transmit completed
-                        delay(int.Parse(data.waitSent), 100);
+                        DELAY(int.Parse(data.waitSent) / 1000);
 
                         //Read current value of packets counter
                         rxdataMeasures dm = new rxdataMeasures();
@@ -812,9 +862,10 @@ namespace ontWifiTest {
                             }
                         }
                         dm.packetGet = ((int)(eCounter - sCounter)).ToString();
-                        debugWriteLine(eCounter.ToString());
 
                         //Hien thi ket qua do len Grid
+                        dm.StartValue = sCounter.ToString();
+                        dm.EndValue = eCounter.ToString();
                         displayrxResultToGrid(data, ref dm);
                         debugWriteLine(string.Format("> Result: {0}\n", dm.ToString()));
                     }
@@ -968,15 +1019,53 @@ namespace ontWifiTest {
 
         #region Send RX Command To Instrument
 
+        bool getWaveForm(string wifi, string rate, ref string waveform) {
+            try {
+                Dictionary<double, string> dictwf = new Dictionary<double, string>();
+                switch (wifi) {
+                    case "802.11nHT20": {
+                            dictwf = waveFormN20;
+                            break;
+                        }
+                    case "802.11nHT40": {
+                            dictwf = waveFormN40;
+                            break;
+                        }
+                    case "802.11b": {
+                            dictwf = waveFormB;
+                            break;
+                        }
+                    case "802.11g": {
+                            dictwf = waveFormG;
+                            break;
+                        }
+                    default: break;
+                }
+                //
+                bool ret = dictwf.TryGetValue(double.Parse(rate), out waveform);
+                debugWriteLine(string.Format("wave file: {0}", waveform));
+                return waveform.Trim().Length == 0 ? false : true;
+            }
+            catch {
+                return false;
+            }
+        }
+
         private bool sendrxCommandToInstrument(rxdataFields data) {
             int errCode = 0;
-            List<string> errContents = new List<string>() { "Khong cau hinh duoc may do."};
+            
+            List<string> errContents = new List<string>() {
+                "Không cấu hình được máy đo.", //err 0
+                "Không tìm được wave form.", //err 1
+            };
             try {
                 debugWriteLine("> Cấu hình máy đo EXM6640A...");
-                if(Instrument.config_HT20_RxTest_MAC(data.channel, data.power, data.packetSent, "001122334455_H2M7.wfm")) goto NG;
+                string wf="";
+                if (!getWaveForm(data.wifi, data.rate, ref wf)) { errCode = 1; goto NG; }
+                if(Instrument.config_HT20_RxTest_MAC(data.channel, data.power, data.packetSent, wf)) goto NG;
                 goto OK;
             }
-            catch (Exception ex) { errCode = 1; errContents.Add(ex.ToString()); goto NG; }
+            catch (Exception ex) { errCode = 2; errContents.Add(ex.ToString()); goto NG; }
             OK:
             debugWriteLine("# Thành công!");
             return true;
@@ -1030,9 +1119,11 @@ namespace ontWifiTest {
         
         public string packetGet { get; set; }
         public string PER { get; set; }
+        public string StartValue { get; set; }
+        public string EndValue { get; set; }
 
         public override string ToString() {
-            return string.Format("\npacketGet={0},\nPER={1}", packetGet, PER);
+            return string.Format("\nStartValue={0}\nEndValue={1}\npacketGet={2},\nPER={3}", StartValue, EndValue, packetGet, PER);
         }
     }
 
