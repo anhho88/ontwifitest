@@ -32,6 +32,7 @@ namespace ontWifiTest
         Thread threadTimeCount = null;
         bool _flag = false;
         int testCount = 0;
+        bool stopTest = false;
 
         List<txGridDataRow> txGridDataContext = new List<txGridDataRow>();
         List<rxGridDataRow> rxGridDataContext = new List<rxGridDataRow>();
@@ -151,13 +152,12 @@ namespace ontWifiTest
             #region Suy Hao
             XmlDocument doc = new XmlDocument();
             XmlElement root;
-            string fileName = @"C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\DataAttenuation.xml";
+            string fileName = string.Format("{0}DataAttenuation.xml", System.AppDomain.CurrentDomain.BaseDirectory);
             doc.Load(fileName);
             root = doc.DocumentElement;
             XmlNodeList ds = root.SelectNodes("Path");
             foreach (XmlNode item in ds)
             {
-
                 string Name = item.SelectSingleNode("PathName").InnerText;
                 XmlNodeList ds1 = item.SelectNodes("DataList/Data");
                 //int i = 0;
@@ -296,6 +296,17 @@ namespace ontWifiTest
                         }
                     default: break;
                 }
+            }
+        }
+
+        private void btnPreset_Click(object sender, EventArgs e) {
+            try {
+                connectInstrument();
+                Instrument.presetInstrument();
+                Thread.Sleep(1000);
+                Instrument = null;
+            } catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -634,6 +645,7 @@ namespace ontWifiTest
                 "Không thể chuyển đổi dữ liệu wifi, channel từ DUT sang Instrument.", //errCode = 0
                 "Không thể thiết lập cổng RF input." //errCode = 1
             };
+            string _err = "";
             try
             {
                 debugWriteLine("> Cấu hình máy đo EXM6640A...");
@@ -643,12 +655,12 @@ namespace ontWifiTest
                 {
                     case "1":
                         {
-                            if (!Instrument.SelectRFInputPort(EXM6640A.Ports.RFIO1)) { errCode = 1; goto NG; }
+                            if (!Instrument.SelectRFInputPort(EXM6640A.Ports.RFIO1, out _err)) { errCode = 1; goto NG; }
                             break;
                         }
                     case "2":
                         {
-                            if (!Instrument.SelectRFInputPort(EXM6640A.Ports.RFIO2)) { errCode = 1; goto NG; }
+                            if (!Instrument.SelectRFInputPort(EXM6640A.Ports.RFIO2, out _err)) { errCode = 1; goto NG; }
                             break;
                         }
                     default:
@@ -666,7 +678,7 @@ namespace ontWifiTest
             return true;
             NG:
             debugWriteLine("# Thất bại!");
-            debugWriteLine(errContents[errCode]);
+            debugWriteLine(errCode == 1 ? string.Format("{0}\n{1}", errContents[errCode], _err) : errContents[errCode]);
             return false;
         }
 
@@ -835,7 +847,7 @@ namespace ontWifiTest
         {
             //Count time
             startCalculateElapsedTime();
-            btnStart.Enabled = false;
+            //btnStart.Enabled = false;
             btnStart.Text = "STOP";
             initialControlContext = true;
             if (lblType.Text == "TX")
@@ -859,9 +871,11 @@ namespace ontWifiTest
         {
             stopCalculateElapsedTime();
             debugWriteLine("\n...\nThe End >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-            btnStart.Enabled = true;
+            //btnStart.Enabled = true;
             btnStart.Text = "START";
             lblStatus.Text = "completed!";
+            Instrument = null;
+            ontDevice = null;
         }
 
         /// <summary>
@@ -968,6 +982,10 @@ namespace ontWifiTest
                     //Start LOOP
                     foreach (var data in txListTestCase)
                     {
+                        //Stop test
+                        btnStart.Refresh();
+                        if (stopTest == true) goto END;
+
                         //Update progress
                         testCount++;
                         updateProgress(testCount, totaltestCount);
@@ -1024,6 +1042,10 @@ namespace ontWifiTest
                     //Start LOOP
                     foreach (var data in rxListTestCase)
                     {
+                        //Stop test
+                        btnStart.Refresh();
+                        if (stopTest == true) goto END;
+
                         double sCounter = 0, eCounter = 0;
                         //Update progress
                         testCount++;
@@ -1289,6 +1311,7 @@ namespace ontWifiTest
                 "Không tìm được wave form.", //err 1
                  "Không thể thiết lập cổng RF output." //errCode = 2
             };
+            string _err = "";
             try
             {
                 debugWriteLine("> Cấu hình máy đo EXM6640A...");
@@ -1298,12 +1321,12 @@ namespace ontWifiTest
                 {
                     case "1":
                         {
-                            if (!Instrument.SelectRFOutputPort(EXM6640A.Ports.RFIO1)) { errCode = 2; goto NG; }
+                            if (!Instrument.SelectRFOutputPort(EXM6640A.Ports.RFIO1, out _err)) { errCode = 2; goto NG; }
                             break;
                         }
                     case "2":
                         {
-                            if (!Instrument.SelectRFOutputPort(EXM6640A.Ports.RFIO2)) { errCode = 2; goto NG; }
+                            if (!Instrument.SelectRFOutputPort(EXM6640A.Ports.RFIO2, out _err)) { errCode = 2; goto NG; }
                             break;
                         }
                 }
@@ -1368,7 +1391,7 @@ namespace ontWifiTest
             return true;
             NG:
             debugWriteLine("# Thất bại!");
-            debugWriteLine(errContents[errCode]);
+            debugWriteLine(errCode==2? string.Format("{0}\n{1}", errContents[errCode], _err) : errContents[errCode]);
             return false;
         }
 
@@ -1376,28 +1399,39 @@ namespace ontWifiTest
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            switch (lblType.Text)
-            {
-                case "TX":
-                    {
-                        txTest();
-                        break;
-                    }
-                case "RX":
-                    {
-                        rxTest();
-                        break;
-                    }
-                default:
-                    {
-                        MessageBox.Show("Chưa load file test case vào phần mềm!\nVui lòng kiểm tra lại.\nClick 'File => Load test case'.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        break;
-                    }
+            try {
+                connectInstrument();
+                Instrument.presetInstrument();
+                Instrument = null;
             }
+            catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            }
+
+
+            if (btnStart.Text == "START") {
+                stopTest = false;
+                switch (lblType.Text) {
+                    case "TX": {
+                            txTest();
+                            break;
+                        }
+                    case "RX": {
+                            rxTest();
+                            break;
+                        }
+                    default: {
+                            MessageBox.Show("Chưa load file test case vào phần mềm!\nVui lòng kiểm tra lại.\nClick 'File => Load test case'.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        }
+                }
+            } else {
+                stopTest = true;
+            }
+            
         }
 
         #endregion
-
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     #endregion

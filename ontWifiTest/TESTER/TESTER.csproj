@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Anritsu\MT.cs" />
+    <Compile Include="Anritsu\MT8870A.cs" />
     <Compile Include="KeySight\EXM\EXM.cs" />
     <Compile Include="KeySight\EXM\EXM6640A.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

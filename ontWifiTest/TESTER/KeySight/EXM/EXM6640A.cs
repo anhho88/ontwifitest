@@ -491,31 +491,50 @@ namespace TESTER
         }
         /*------------------------------------------------------------*/
 
-        public bool SelectRFInputPort(Ports input)
+        public bool SelectRFInputPort(Ports input, out string error)
         {
+            error = "";
             try
             {
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
                 string cmd = string.Format(":FEED:RF:PORT:INPut {0}\n", input);
                 mbSession.Write(cmd);
                 Thread.Sleep(100);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                error = ex.ToString();
                 return false;
             }
         }
-        public bool SelectRFOutputPort(Ports input)
+        public bool SelectRFOutputPort(Ports input, out string error)
         {
+            error = "";
             try
             {
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
                 string cmd = string.Format(":FEED:RF:PORT:OUTPut {0}\n", input);
                 mbSession.Write(cmd);
                 Thread.Sleep(100);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                error = ex.ToString();
+                return false;
+            }
+        }
+        public bool presetInstrument() {
+            try {
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
+                mbSession.Write(":SYST:PRES" + "\n");
+                Thread.Sleep(50);
+                return true;
+            } catch {
                 return false;
             }
         }
@@ -523,6 +542,8 @@ namespace TESTER
         {
             bool enable_nSISO_Testing = false;
             try {
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
                 mbSession.Write(":SOURce:PRESet" + "\n");
                 Thread.Sleep(50);
                 //checkBusyState(mbSession, "*ESR?");
@@ -589,6 +610,8 @@ namespace TESTER
 
                 //saveLogfile(g_logfilePath, "[BOL] Khởi tạo lần đầu cho thiết bị!\n");
                 // Cấu hình khối Source
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
                 mbSession.Write(":SOURce:PRESet" + "\n");
                 //Thread.Sleep(100);
                 checkBusyState(mbSession, "*ESR?");
