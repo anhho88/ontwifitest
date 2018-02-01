@@ -1,0 +1,1 @@
+Wifi=802.11nHT20;Anten=1,2;Channel=1,6,11;Rate=0,4,7;Power=68

@@ -115,3 +115,18 @@ C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\TESTER\obj\Debug\TESTER.
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\TESTER\obj\Debug\TESTER.csproj.CoreCompileInputs.cache
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\TESTER\obj\Debug\TESTER.dll
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\TESTER\obj\Debug\TESTER.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\TESTER.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\TESTER.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\DUT.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\WIFI.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\NationalInstruments.MStudioCLM.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\DUT.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\WIFI.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\NationalInstruments.Common.xml
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\NationalInstruments.NI4882.xml
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\bin\Debug\NationalInstruments.VisaNS.xml
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\obj\Debug\TESTER.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\obj\Debug\TESTER.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\obj\Debug\TESTER.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\TESTER\obj\Debug\TESTER.pdb

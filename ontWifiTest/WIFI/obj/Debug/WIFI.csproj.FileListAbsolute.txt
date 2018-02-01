@@ -34,3 +34,9 @@ C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\WIFI\obj\Debug\WIFI.cspr
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\WIFI\obj\Debug\WIFI.csproj.CoreCompileInputs.cache
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\WIFI\obj\Debug\WIFI.dll
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\WIFI\obj\Debug\WIFI.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\WIFI\bin\Debug\WIFI.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\WIFI\bin\Debug\WIFI.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\WIFI\obj\Debug\WIFI.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\WIFI\obj\Debug\WIFI.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\WIFI\obj\Debug\WIFI.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\WIFI\obj\Debug\WIFI.pdb

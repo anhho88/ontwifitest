@@ -1,0 +1,1 @@
+Wifi=802.11g;Anten=1;Channel=13;Rate=6,18,36,54;Power=-60;Packet count=1000;Delay=15000

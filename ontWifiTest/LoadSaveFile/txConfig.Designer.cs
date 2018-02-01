@@ -62,8 +62,7 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1133, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1007, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -74,38 +73,36 @@
             this.toolStripMenuItem4,
             this.toolStripMenuItem3});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(50, 29);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 24);
             this.toolStripMenuItem1.Text = "File";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(189, 30);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(162, 26);
             this.toolStripMenuItem2.Text = "Load File";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(189, 30);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(162, 26);
             this.toolStripMenuItem4.Text = "Save File";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(189, 30);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(162, 26);
             this.toolStripMenuItem3.Text = "Save As File";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // grwifi
             // 
             this.grwifi.Controls.Add(this.cbwifi);
-            this.grwifi.Location = new System.Drawing.Point(14, 231);
-            this.grwifi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grwifi.Location = new System.Drawing.Point(12, 185);
             this.grwifi.Name = "grwifi";
-            this.grwifi.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grwifi.Size = new System.Drawing.Size(177, 78);
+            this.grwifi.Size = new System.Drawing.Size(157, 62);
             this.grwifi.TabIndex = 2;
             this.grwifi.TabStop = false;
             this.grwifi.Text = "Wifi Types";
@@ -113,105 +110,91 @@
             // cbwifi
             // 
             this.cbwifi.FormattingEnabled = true;
-            this.cbwifi.Location = new System.Drawing.Point(22, 26);
-            this.cbwifi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbwifi.Location = new System.Drawing.Point(20, 21);
             this.cbwifi.Name = "cbwifi";
-            this.cbwifi.Size = new System.Drawing.Size(136, 28);
+            this.cbwifi.Size = new System.Drawing.Size(121, 24);
             this.cbwifi.TabIndex = 0;
             this.cbwifi.SelectedIndexChanged += new System.EventHandler(this.cbwifi_SelectedIndexChanged);
             // 
             // grchannel
             // 
             this.grchannel.Controls.Add(this.txtchannel);
-            this.grchannel.Location = new System.Drawing.Point(382, 231);
-            this.grchannel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grchannel.Location = new System.Drawing.Point(340, 185);
             this.grchannel.Name = "grchannel";
-            this.grchannel.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grchannel.Size = new System.Drawing.Size(238, 78);
+            this.grchannel.Size = new System.Drawing.Size(212, 62);
             this.grchannel.TabIndex = 3;
             this.grchannel.TabStop = false;
             this.grchannel.Text = "Channel";
             // 
             // txtchannel
             // 
-            this.txtchannel.Location = new System.Drawing.Point(7, 26);
-            this.txtchannel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtchannel.Location = new System.Drawing.Point(6, 21);
             this.txtchannel.Multiline = true;
             this.txtchannel.Name = "txtchannel";
-            this.txtchannel.Size = new System.Drawing.Size(224, 29);
+            this.txtchannel.Size = new System.Drawing.Size(200, 24);
             this.txtchannel.TabIndex = 0;
             // 
             // granten
             // 
             this.granten.Controls.Add(this.txtanten);
-            this.granten.Location = new System.Drawing.Point(213, 231);
-            this.granten.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.granten.Location = new System.Drawing.Point(189, 185);
             this.granten.Name = "granten";
-            this.granten.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.granten.Size = new System.Drawing.Size(140, 78);
+            this.granten.Size = new System.Drawing.Size(124, 62);
             this.granten.TabIndex = 4;
             this.granten.TabStop = false;
             this.granten.Text = "Anten";
             // 
             // txtanten
             // 
-            this.txtanten.Location = new System.Drawing.Point(7, 29);
-            this.txtanten.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtanten.Location = new System.Drawing.Point(6, 23);
             this.txtanten.Multiline = true;
             this.txtanten.Name = "txtanten";
-            this.txtanten.Size = new System.Drawing.Size(112, 26);
+            this.txtanten.Size = new System.Drawing.Size(100, 22);
             this.txtanten.TabIndex = 8;
             // 
             // grrate
             // 
             this.grrate.Controls.Add(this.txtrate);
-            this.grrate.Location = new System.Drawing.Point(652, 231);
-            this.grrate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grrate.Location = new System.Drawing.Point(580, 185);
             this.grrate.Name = "grrate";
-            this.grrate.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grrate.Size = new System.Drawing.Size(244, 78);
+            this.grrate.Size = new System.Drawing.Size(217, 62);
             this.grrate.TabIndex = 5;
             this.grrate.TabStop = false;
             this.grrate.Text = "Rate";
             // 
             // txtrate
             // 
-            this.txtrate.Location = new System.Drawing.Point(7, 26);
-            this.txtrate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtrate.Location = new System.Drawing.Point(6, 21);
             this.txtrate.Multiline = true;
             this.txtrate.Name = "txtrate";
-            this.txtrate.Size = new System.Drawing.Size(224, 29);
+            this.txtrate.Size = new System.Drawing.Size(200, 24);
             this.txtrate.TabIndex = 1;
             // 
             // grpower
             // 
             this.grpower.Controls.Add(this.txtpower);
-            this.grpower.Location = new System.Drawing.Point(915, 231);
-            this.grpower.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grpower.Location = new System.Drawing.Point(813, 185);
             this.grpower.Name = "grpower";
-            this.grpower.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grpower.Size = new System.Drawing.Size(120, 78);
+            this.grpower.Size = new System.Drawing.Size(107, 62);
             this.grpower.TabIndex = 6;
             this.grpower.TabStop = false;
             this.grpower.Text = "Power";
             // 
             // txtpower
             // 
-            this.txtpower.Location = new System.Drawing.Point(7, 26);
-            this.txtpower.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtpower.Location = new System.Drawing.Point(6, 21);
             this.txtpower.Multiline = true;
             this.txtpower.Name = "txtpower";
-            this.txtpower.Size = new System.Drawing.Size(98, 29);
+            this.txtpower.Size = new System.Drawing.Size(88, 24);
             this.txtpower.TabIndex = 7;
             // 
             // btnsave
             // 
             this.btnsave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnsave.ForeColor = System.Drawing.Color.Black;
-            this.btnsave.Location = new System.Drawing.Point(14, 354);
-            this.btnsave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnsave.Location = new System.Drawing.Point(12, 283);
             this.btnsave.Name = "btnsave";
-            this.btnsave.Size = new System.Drawing.Size(124, 58);
+            this.btnsave.Size = new System.Drawing.Size(110, 46);
             this.btnsave.TabIndex = 7;
             this.btnsave.Text = "Save";
             this.btnsave.UseVisualStyleBackColor = true;
@@ -220,10 +203,9 @@
             // btnmodify
             // 
             this.btnmodify.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnmodify.Location = new System.Drawing.Point(166, 354);
-            this.btnmodify.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnmodify.Location = new System.Drawing.Point(148, 283);
             this.btnmodify.Name = "btnmodify";
-            this.btnmodify.Size = new System.Drawing.Size(124, 58);
+            this.btnmodify.Size = new System.Drawing.Size(110, 46);
             this.btnmodify.TabIndex = 8;
             this.btnmodify.Text = "Modify";
             this.btnmodify.UseVisualStyleBackColor = true;
@@ -232,10 +214,9 @@
             // btndelete
             // 
             this.btndelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btndelete.Location = new System.Drawing.Point(317, 354);
-            this.btndelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btndelete.Location = new System.Drawing.Point(282, 283);
             this.btndelete.Name = "btndelete";
-            this.btndelete.Size = new System.Drawing.Size(124, 58);
+            this.btndelete.Size = new System.Drawing.Size(110, 46);
             this.btndelete.TabIndex = 9;
             this.btndelete.Text = "Delete";
             this.btndelete.UseVisualStyleBackColor = true;
@@ -244,19 +225,19 @@
             // ListData
             // 
             this.ListData.FormattingEnabled = true;
-            this.ListData.ItemHeight = 20;
-            this.ListData.Location = new System.Drawing.Point(14, 39);
-            this.ListData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ListData.ItemHeight = 16;
+            this.ListData.Location = new System.Drawing.Point(12, 31);
             this.ListData.Name = "ListData";
-            this.ListData.Size = new System.Drawing.Size(1105, 164);
+            this.ListData.Size = new System.Drawing.Size(983, 132);
             this.ListData.TabIndex = 10;
+            this.ListData.Click += new System.EventHandler(this.ListData_Click);
             // 
             // txConfig
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1133, 499);
+            this.ClientSize = new System.Drawing.Size(1007, 399);
             this.Controls.Add(this.ListData);
             this.Controls.Add(this.btndelete);
             this.Controls.Add(this.btnmodify);
@@ -268,7 +249,6 @@
             this.Controls.Add(this.grwifi);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "txConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tuychinh";

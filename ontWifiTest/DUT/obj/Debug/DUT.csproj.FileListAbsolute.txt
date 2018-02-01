@@ -34,3 +34,9 @@ C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.csproj
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.csproj.CoreCompileInputs.cache
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.dll
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\DUT\bin\Debug\DUT.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\DUT\bin\Debug\DUT.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\DUT\obj\Debug\DUT.pdb

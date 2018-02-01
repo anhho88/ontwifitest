@@ -1,2 +1,4 @@
-Wifi=802.11nHT20;Anten=1;Channel=1,2,3;Rate=0,1;Power=68
-Wifi=802.11nHT40;Anten=1;Channel=5,8,13;Rate=15;Power=68
+Wifi=802.11b;Anten=1;Channel=1,6,11;Rate=1,2,5.5,11;Power=68
+Wifi=802.11g;Anten=1;Channel=1,6,11;Rate=6,9,12,18,24,36,48,54;Power=68
+Wifi=802.11nHT20;Anten=1;Channel=1,6,11;Rate=0,1,2,3,4,5,6,7;Power=68
+Wifi=802.11nHT40;Anten=1;Channel=5,8,13;Rate=7,8,13;Power=68

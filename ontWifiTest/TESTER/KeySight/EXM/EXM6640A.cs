@@ -10,6 +10,7 @@ namespace TESTER
 {
     public class EXM6640A
     {
+        public enum Ports { RFIO1, RFIO2 };
         /*----------------------------------------------------------*/
         string g_logfilePath = @"WIFI_LOGFILE_E6640A.LOG";
 
@@ -489,22 +490,63 @@ namespace TESTER
             /*---------Lưu logfile kết quả test---------*/
         }
         /*------------------------------------------------------------*/
+
+        public bool SelectRFInputPort(Ports input)
+        {
+            try
+            {
+                string cmd = string.Format(":FEED:RF:PORT:INPut {0}\n", input);
+                mbSession.Write(cmd);
+                Thread.Sleep(100);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool SelectRFOutputPort(Ports input)
+        {
+            try
+            {
+                string cmd = string.Format(":FEED:RF:PORT:OUTPut {0}\n", input);
+                mbSession.Write(cmd);
+                Thread.Sleep(100);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public bool config_HT20_RxTest_Transmitter(string frequency, string chuan, string range, string trigger)// string packet_number, string waveform_file
         {
             bool enable_nSISO_Testing = false;
             try {
                 mbSession.Write(":SOURce:PRESet" + "\n");
-                Thread.Sleep(100);
+                Thread.Sleep(50);
+                //checkBusyState(mbSession, "*ESR?");
+                //checkBusyState(mbSession, "*OPC?");
                 mbSession.Write("INST:SEL WLAN" + "\n"); // cau lenh chi den WLAN
-                Thread.Sleep(100);
+                Thread.Sleep(50);
+                //checkBusyState(mbSession, "*ESR?");
+                //checkBusyState(mbSession, "*OPC?");
                 mbSession.Write(":RAD:STAN " + chuan + "\n");
-                Thread.Sleep(100);
+                Thread.Sleep(50);
+                //checkBusyState(mbSession, "*ESR?");
+                //checkBusyState(mbSession, "*OPC?");
                 mbSession.Write("FREQ:CENT " + frequency + "MHz" + "\n");
-                Thread.Sleep(100);
+                Thread.Sleep(50);
+                //checkBusyState(mbSession, "*ESR?");
+                //checkBusyState(mbSession, "*OPC?");
                 mbSession.Write(":CONF:EVM");
-                Thread.Sleep(100);
+                Thread.Sleep(50);
+                //checkBusyState(mbSession, "*ESR?");
+                //checkBusyState(mbSession, "*OPC?");
                 mbSession.Write(":POW:RANG " + range + "\n");
-                Thread.Sleep(100);
+                Thread.Sleep(50);
+                //checkBusyState(mbSession, "*ESR?");
+                //checkBusyState(mbSession, "*OPC?");
                 mbSession.Write("TRIG:EVM:SOUR " + trigger + "\n");
                 //Thread.Sleep(1500);
                 //mbSession.Write(":INIT:CONT OFF");
@@ -542,24 +584,38 @@ namespace TESTER
             bool enable_nSISO_Testing = false;
             try {
 
-                string frequency = "";
-                frequency = ((int.Parse(channel) * 5) + 2407).ToString();
+                //string frequency = "";
+                //frequency = ((int.Parse(channel) * 5) + 2407).ToString();
 
                 //saveLogfile(g_logfilePath, "[BOL] Khởi tạo lần đầu cho thiết bị!\n");
                 // Cấu hình khối Source
                 mbSession.Write(":SOURce:PRESet" + "\n");
-                Thread.Sleep(100);
+                //Thread.Sleep(100);
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
                 mbSession.Write(":SOUR:RAD:ARB:LOAD \"D:\\\\Waveform\\\\" + waveform_file + "\"" + "\n");
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
                 mbSession.Write(":SOUR:LIST:NUMB:STEP 3" + "\n");   //Tạo 3 step
-                Thread.Sleep(100);
-                mbSession.Write(":SOUR:LIST:STEP1:SET IMM,0.00000E+00,NONE,DOWN," + frequency + "MHz" + ",-1.2000000E+02,\"CW\",TIME,1.0000E-03,0,1" + "\n");   //Thiết lập thông số cho step1
-                Thread.Sleep(1000);
-                mbSession.Write(":SOUR:LIST:STEP2:SET INT,0.00000E+00,NONE,DOWN," + frequency + "MHz" + "," + power + "dBm" + ",\"" + waveform_file + "\",COUN," + packet_number + ",0,1" + "\n");   //Thiết lập thông số cho step2
-                Thread.Sleep(1000);
-                mbSession.Write(":SOUR:LIST:STEP3:SET INT,1.00E-03,NONE,DOWN," + frequency + "MHz" + ",-1.2000000E+02,\"CW\",TIME,1.0000E-03,1,1" + "\n");  //Thiết lập thông số cho step3
-                Thread.Sleep(1000);
+                //Thread.Sleep(100);
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
+                mbSession.Write(":SOUR:LIST:STEP1:SET IMM,0.00000E+00,NONE,DOWN," + channel + "MHz" + ",-1.2000000E+02,\"CW\",TIME,1.0000E-03,0,1" + "\n");   //Thiết lập thông số cho step1
+                //Thread.Sleep(1000);
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
+                mbSession.Write(":SOUR:LIST:STEP2:SET INT,0.00000E+00,NONE,DOWN," + channel + "MHz" + "," + power + "dBm" + ",\"" + waveform_file + "\",COUN," + packet_number + ",0,1" + "\n");   //Thiết lập thông số cho step2
+                //Thread.Sleep(1000);
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
+                mbSession.Write(":SOUR:LIST:STEP3:SET INT,1.00E-03,NONE,DOWN," + channel + "MHz" + ",-1.2000000E+02,\"CW\",TIME,1.0000E-03,1,1" + "\n");  //Thiết lập thông số cho step3
+                //Thread.Sleep(1000);
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
                 mbSession.Write(":SOUR:LIST ON" + "\n");
-                Thread.Sleep(100);
+                //Thread.Sleep(100);
+                checkBusyState(mbSession, "*ESR?");
+                checkBusyState(mbSession, "*OPC?");
                 mbSession.Write(":SOUR:LIST:TRIG" + "\n");  //Bắt đầu phát waveform
 
             }

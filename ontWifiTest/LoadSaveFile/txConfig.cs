@@ -155,6 +155,27 @@ namespace LoadSaveFile
                  }
             }
         }
+
+        private void ListData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string data = ListData.Items[ListData.SelectedIndex].ToString();
+                string[] array = data.Split(';');
+                string[] buffer = data.Split(';');
+                string wifi = buffer[0].Split('=')[1];
+                string anten = buffer[1].Split('=')[1];
+                string channel = buffer[2].Split('=')[1];
+                string rate = buffer[3].Split('=')[1];
+                string power = buffer[4].Split('=')[1];
+                cbwifi.Text = wifi;
+                txtanten.Text = anten;
+                txtchannel.Text = channel;
+                txtpower.Text = power;
+                txtrate.Text = rate;
+            }
+            catch { }
+        }
     }
     public class singleMode
     {

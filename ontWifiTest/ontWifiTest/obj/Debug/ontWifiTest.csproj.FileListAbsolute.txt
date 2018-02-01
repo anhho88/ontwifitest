@@ -46,3 +46,29 @@ C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\Na
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\NationalInstruments.NiLmClientDLL.dll
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\NationalInstruments.MStudioCLM.dll
 C:\Users\ANHHO\source\repos\Git\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\NationalInstruments.Common.xml
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\ontWifiTest.exe.config
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\ontWifiTest.exe
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\ontWifiTest.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\DUT.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\LoadSaveFile.exe
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\TESTER.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\Toggle.Net.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\WIFI.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\NationalInstruments.VisaNS.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\NationalInstruments.Common.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\NationalInstruments.MStudioCLM.dll
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\DUT.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\LoadSaveFile.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\LoadSaveFile.exe.config
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\TESTER.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\WIFI.pdb
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\NationalInstruments.VisaNS.xml
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\bin\Debug\NationalInstruments.Common.xml
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\obj\Debug\ontWifiTest.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\obj\Debug\ontWifiTest.mainForm.resources
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\obj\Debug\ontWifiTest.Properties.Resources.resources
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\obj\Debug\ontWifiTest.csproj.GenerateResource.Cache
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\obj\Debug\ontWifiTest.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\obj\Debug\ontWifiTest.exe
+C:\Users\ADMIN\Desktop\Git Hub\ontwifitest\ontWifiTest\ontWifiTest\obj\Debug\ontWifiTest.pdb

@@ -47,7 +47,7 @@ namespace WIFI
             txCommandList.Add("wl pkteng_start 00:90:4C:21:00:8e tx 100 1024 0");
         }
 
-        public S80211b(int _channel, double _rate, int _anten) : base(_channel, _rate) {
+        public S80211b(string _bandwith,int _channel, double _rate, int _anten) : base(_bandwith,_channel, _rate) {
 
             this.Anten = _anten;
             rxCommandList = new List<string>();

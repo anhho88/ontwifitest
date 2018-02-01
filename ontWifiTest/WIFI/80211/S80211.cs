@@ -59,9 +59,10 @@ namespace WIFI
             this.power = _power;
         }
 
-        public S80211(int _channel, double _rate) {
+        public S80211(string _bandWidth,int _channel, double _rate) {
             this.channel = _channel;
             this.rate = _rate;
+            this.bandWidth = int.Parse(_bandWidth);
         }
     }
 }

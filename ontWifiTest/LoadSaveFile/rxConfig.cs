@@ -171,6 +171,8 @@ namespace LoadSaveFile
                 txtchannel.Text = channel;
                 txtpower.Text = power;
                 txtrate.Text = rate;
+                txtpacket.Text = numberpacket;
+                txtdelay.Text = delay;
             }
             catch { }
         }
