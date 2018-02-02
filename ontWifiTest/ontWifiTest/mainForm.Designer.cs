@@ -372,6 +372,7 @@
             this.btnExportExcel.TabIndex = 1;
             this.btnExportExcel.Text = "Export";
             this.btnExportExcel.UseVisualStyleBackColor = false;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // panel1
             // 
